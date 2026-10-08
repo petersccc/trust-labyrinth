@@ -12,8 +12,9 @@
  * token. See worker/trust-labyrinth-worker.js for that.
  */
 
-// TODO: set to the Worker's URL once it is deployed (worker/README.md).
-const CLICKUP_WORKER_URL = "";
+// The Trust Labyrinth's own Worker, deployed 2026-10-08 in the Cloudflare
+// dashboard (see worker/README.md if it is ever redeployed elsewhere).
+const CLICKUP_WORKER_URL = "https://trust-labyrinth-backend.nachhilfe-kp.workers.dev/";
 
 /**
  * Reads the `ref` query parameter from the current page URL, e.g.

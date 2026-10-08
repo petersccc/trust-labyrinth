@@ -7,7 +7,7 @@ separate Worker: the two checkup Workers stay exactly as they are.
 ## Cloudflare dashboard (no install needed, same way as the checkups)
 
 1. Go to **dash.cloudflare.com** → **Workers & Pages** → **Create** →
-   **Create Worker**. Name it `trust-labyrinth-clickup-submit`.
+   **Create Worker**. Name it `trust-labyrinth-backend` (the name used for the live Worker).
 2. Open the Worker's editor, replace the default code with the full
    contents of `trust-labyrinth-worker.js` from this folder, and deploy.
 3. **Settings** → **Variables and Secrets** → **Add** → type **Secret**,
