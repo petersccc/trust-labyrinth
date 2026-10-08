@@ -4,8 +4,8 @@
  * The Trust Labyrinth: opening slide, 7 rooms with an insight card after
  * each, the result page (the exit) and the thank you slide. All visible
  * text comes from content.js (trust-labyrinth-content.json, word for
- * word) and content-extra.js. Nothing is stored or sent anywhere until
- * the visitor submits the form on the result page.
+ * word) and privacy-content.js (the privacy notices). Nothing is stored
+ * or sent anywhere until the visitor submits the form on the result page.
  */
 
 const LANGS = ["de", "en", "zh"];
@@ -26,6 +26,12 @@ const ORDER_DEFAULT = [1, 2, 3, 4, 5, 6, 7];
 const ORDER_INFO_FIRST = [1, 4, 5, 2, 3, 6, 7];
 const POSITIVE_CARD = 4;
 
+// Result summary paths (fixed room numbers, not the visitor's order).
+const TRUST_PATH = [2, 3];
+const INFO_PATH = [4, 5];
+
+const RESULT = "slide_9_result_page";
+
 const BOOKING_URL = "https://calendly.com/cross-cultural-peters/new-meeting?utm_source=trust-labyrinth";
 const WEBSITE_URL = "https://peters-crosscultural.de";
 
@@ -38,6 +44,7 @@ const state = {
   pos: 1, // the visitor's position in the labyrinth, 1 to 7
   selections: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [] }, // card numbers per room
   insightOpen: false,
+  privacyOpen: false,
   showError: false,
   form: { freeText: "", company: "", email: "", consent: false },
   formErrors: {},
@@ -105,13 +112,10 @@ function emphasize(s, phrases) {
   return html;
 }
 
+/** Words set in medium weight: bold_words_en / _de / _zh in the content file. */
 function boldWords(room, element) {
-  if (state.lang === "en") {
-    const e = entry(ROOM_KEYS[room], element);
-    return (e && e.bold_words_en) || [];
-  }
-  const byRoom = BOLD_WORDS[room] || {};
-  return (byRoom[element] && byRoom[element][state.lang]) || [];
+  const e = entry(ROOM_KEYS[room], element);
+  return (e && e["bold_words_" + state.lang]) || [];
 }
 
 /**
@@ -123,9 +127,17 @@ function withPrivacyLink(s) {
   const href = privacyHref();
   if (s.endsWith(linkText)) {
     const before = s.slice(0, s.length - linkText.length);
-    return esc(before) + '<a href="' + href + '" target="_blank" rel="noopener">' + esc(linkText) + "</a>";
+    return esc(before) + privacyLink(linkText);
   }
   return esc(s);
+}
+
+/**
+ * The privacy notice opens as an overlay (data-privacy). The href is a
+ * fallback for opening it in a new tab (middle click, no JavaScript).
+ */
+function privacyLink(linkText) {
+  return '<a href="' + privacyHref() + '" data-privacy>' + esc(linkText) + "</a>";
 }
 
 function privacyHref() {
@@ -162,7 +174,7 @@ function setLang(lang) {
 
 function applyDocumentLang() {
   document.documentElement.lang = state.lang === "zh" ? "zh-CN" : state.lang;
-  document.title = EXTRA.pageTitle[state.lang];
+  document.title = text("page_meta", "Page title (browser tab and link preview)");
 }
 
 // ------------------------------------------------------------------
@@ -184,6 +196,11 @@ function problemCount(room) {
   return state.selections[room].filter((n) => n !== POSITIVE_CARD).length;
 }
 
+/** Every room with at least one problem card, in fixed numbering 1 to 7. */
+function stuckRooms() {
+  return [1, 2, 3, 4, 5, 6, 7].filter((room) => problemCount(room) > 0);
+}
+
 /**
  * Spec section 7: the room with the most selected problem cards; a tie
  * goes to the earlier room in the fixed numbering 1 to 7. Null when no
@@ -200,6 +217,25 @@ function stuckRoom() {
     }
   }
   return best;
+}
+
+/**
+ * Shown only when 2 or more rooms are stuck: the count line plus one
+ * summary sentence chosen from which paths the stuck rooms lie on.
+ * Returns "" otherwise.
+ */
+function stuckSummary() {
+  const stuck = stuckRooms();
+  if (stuck.length < 2) return "";
+  const onTrust = stuck.some((r) => TRUST_PATH.includes(r));
+  const onInfo = stuck.some((r) => INFO_PATH.includes(r));
+  const key = onTrust && onInfo ? "Summary A (trust path and information path)"
+    : onTrust ? "Summary B (trust path only)"
+    : onInfo ? "Summary C (information path only)"
+    : "Summary D (only rooms 1, 6, 7)";
+  const count = fill(text(RESULT, "Stuck count (2 or more stuck rooms)"), stuck.length);
+  // Chinese sentences run on without a space, like the rest of the copy.
+  return count + (state.lang === "zh" ? "" : " ") + text(RESULT, key);
 }
 
 /** Positive card texts, in the order the visitor walked through. */
@@ -228,7 +264,7 @@ function langSwitch() {
 function footer() {
   return (
     '<footer class="footer">' + esc(fixed("Footer")) +
-    '<a href="' + privacyHref() + '" target="_blank" rel="noopener">' + esc(fixed("Footer link")) + "</a></footer>"
+    privacyLink(fixed("Footer link")) + "</footer>"
   );
 }
 
@@ -249,7 +285,7 @@ function pathThrough(lastIndex) {
 
 function map(mode) {
   const full = pathThrough(MAP_POINTS.length - 1);
-  const exitLabel = esc(EXTRA.mapExit[state.lang]);
+  const exitLabel = esc(fixed("Map exit"));
   let svg = '<svg class="map" viewBox="-2 0 208 58" aria-hidden="true" focusable="false">';
 
   if (mode === "result") {
@@ -323,7 +359,7 @@ function renderRoom() {
   const sel = state.selections[room];
   let html =
     '<main class="page room">' + langSwitch() + map("room") +
-    '<header class="band"><div class="band-label">' + esc(fill(EXTRA.roomLabel[state.lang], state.pos)) + "</div>" +
+    '<header class="band"><div class="band-label">' + esc(fill(fixed("Header band label"), state.pos)) + "</div>" +
     '<h1 class="band-title">' + esc(roomText(room, "Room name")) + "</h1></header>" +
     '<p class="intro">' + esc(roomText(room, "Intro")) + "</p>" +
     '<p class="key">' + esc(roomText(room, "Key line")) + "</p>";
@@ -375,11 +411,10 @@ function insightButtonText() {
   const button = roomText(verbRoom, "Button");
   if (pos >= 6) return button;
   const nextName = roomText(roomOrder()[pos], "Room name");
-  if (state.lang === "en") {
-    return button.replace(/\s*\[NEXT ROOM\]\s*$/, "") + " " + nextName.toUpperCase();
-  }
-  if (state.lang === "de") return button + " " + nextName.toUpperCase();
-  return button + nextName;
+  // The verb part ends with a colon in every language; Chinese takes no
+  // space and has no capitals.
+  if (state.lang === "zh") return button + nextName;
+  return button + " " + nextName.toUpperCase();
 }
 
 function renderInsight(room) {
@@ -443,10 +478,16 @@ function renderResult() {
 
   if (stuck) {
     const line = splitResultLine(text(s, "Result: Room " + stuck));
+    const summary = stuckSummary();
+    // One stuck room: "WHERE YOU GOT STUCK". Two or more: "...MOST" plus
+    // the count line and summary sentence, without naming the others.
+    const label = summary ? text(s, "Stuck label (main, 2 or more stuck rooms)") : text(s, "Stuck label");
     html +=
-      '<div class="block tan"><div class="lab">' + esc(text(s, "Stuck label")) + "</div>" +
+      '<div class="block tan"><div class="lab">' + esc(label) + "</div>" +
       '<p class="stuck-room">' + esc(line.name) + "</p>" +
-      '<p class="stuck-text">' + esc(line.sentence) + "</p></div>";
+      '<p class="stuck-text">' + esc(line.sentence) + "</p>" +
+      (summary ? '<p class="stuck-summary">' + esc(summary) + "</p>" : "") +
+      "</div>";
   } else {
     html += '<div class="block tan"><p>' + esc(text(s, "Only positive cards")) + "</p></div>";
   }
@@ -460,7 +501,7 @@ function renderResult() {
     '<input class="field" name="company" type="text" autocomplete="organization" maxlength="200" aria-label="' +
     esc(text(s, "Placeholder 1")) + '" placeholder="' + esc(text(s, "Placeholder 1")) + '" value="' + esc(f.company) + '"' +
     (err.company ? ' aria-invalid="true" aria-describedby="err-company"' : "") + ">" +
-    (err.company ? '<p class="error field-error" id="err-company">' + esc(EXTRA.companyError[state.lang]) + "</p>" : "") +
+    (err.company ? '<p class="error field-error" id="err-company">' + esc(text(s, "Error 3 (company name)")) + "</p>" : "") +
     '<input class="field" name="email" type="email" autocomplete="email" maxlength="200" aria-label="' +
     esc(text(s, "Placeholder 2")) + '" placeholder="' + esc(text(s, "Placeholder 2")) + '" value="' + esc(f.email) + '"' +
     (err.email ? ' aria-invalid="true" aria-describedby="err-email"' : "") + ">" +
@@ -588,7 +629,65 @@ app.addEventListener("click", (e) => {
   }
 });
 
+// ------------------------------------------------------------------
+// Privacy notice overlay
+// ------------------------------------------------------------------
+// Opens on top of whatever the visitor is looking at. The page below is
+// not re-rendered, so selections, an open insight card, typed form
+// values and the scroll position are exactly as they were on close.
+
+let privacyReturnFocus = null;
+
+function openPrivacy() {
+  if (state.privacyOpen) return;
+  state.privacyOpen = true;
+  privacyReturnFocus = document.activeElement;
+  const back = esc(fixed("Privacy back button"));
+  const el = document.createElement("div");
+  el.className = "overlay privacy-overlay";
+  el.id = "privacy";
+  el.setAttribute("data-privacy-overlay", "");
+  el.innerHTML =
+    '<section class="privacy-panel" role="dialog" aria-modal="true" aria-labelledby="privacy-title" tabindex="-1" lang="' +
+    (state.lang === "zh" ? "zh-CN" : state.lang) + '">' +
+    '<button type="button" class="btn-text privacy-back" data-close-privacy>← ' + back + "</button>" +
+    '<div class="privacy-body">' + PRIVACY_HTML[state.lang].replace("<h1>", '<h1 id="privacy-title">') + "</div>" +
+    '<button type="button" class="btn" data-close-privacy>' + back + "</button>" +
+    "</section>";
+  document.body.appendChild(el);
+  document.body.style.overflow = "hidden";
+  el.querySelector(".privacy-panel").focus({ preventScroll: true });
+}
+
+function closePrivacy() {
+  const el = document.getElementById("privacy");
+  if (el) el.remove();
+  state.privacyOpen = false;
+  document.body.style.overflow = state.insightOpen ? "hidden" : "";
+  if (privacyReturnFocus && document.contains(privacyReturnFocus)) privacyReturnFocus.focus();
+}
+
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("[data-privacy]");
+  if (link) {
+    // Ctrl/Cmd/middle click still opens the standalone page in a new tab.
+    if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+    // preventDefault also keeps the link inside the consent label from
+    // ticking the checkbox.
+    e.preventDefault();
+    e.stopPropagation();
+    return openPrivacy();
+  }
+  if (e.target.closest("[data-close-privacy]") || e.target.matches("[data-privacy-overlay]")) {
+    closePrivacy();
+  }
+}, true);
+
 document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && state.privacyOpen) {
+    closePrivacy();
+    return;
+  }
   if (e.key === "Escape" && state.insightOpen) {
     state.insightOpen = false;
     render({ keepScroll: true, focusSelector: '[data-action="next"]' });
@@ -649,18 +748,30 @@ function buildSubmission() {
       })),
     })),
     stuckRoom: stuck ? roomText(stuck, "Room name") : "",
+    stuckRooms: stuckRooms().map((room) => ({
+      number: room,
+      name: roomText(room, "Room name"),
+      problemCards: problemCount(room),
+      main: room === stuck,
+    })),
+    summary: stuckSummary(),
     strengths: strengths(),
     freeText: state.form.freeText.trim(),
   };
 }
 
-// Development check: every DE/ZH bold phrase must appear in its text.
-Object.keys(BOLD_WORDS).forEach((room) => {
-  Object.keys(BOLD_WORDS[room]).forEach((el) => {
-    ["de", "zh"].forEach((l) => {
-      const t = text(ROOM_KEYS[room], el, l);
-      BOLD_WORDS[room][el][l].forEach((p) => {
-        if (!t.includes(p)) console.warn("[content] bold phrase not in text:", room, el, l, p);
+// Content check: every bold phrase must appear in its text, and every
+// insight text with English bold words needs German and Chinese ones.
+Object.values(CONTENT).forEach((list) => {
+  if (!Array.isArray(list)) return;
+  list.forEach((e) => {
+    LANGS.forEach((l) => {
+      const words = e["bold_words_" + l];
+      if (e.bold_words_en && !words && /^Insight/.test(e.element)) {
+        console.warn("[content] missing bold_words_" + l + ":", e.element, e.en);
+      }
+      (words || []).forEach((p) => {
+        if (!e[l].includes(p)) console.warn("[content] bold phrase not in text:", e.element, l, p);
       });
     });
   });

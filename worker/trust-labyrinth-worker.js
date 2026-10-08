@@ -121,6 +121,8 @@ function buildDescription(body) {
   const order = Array.isArray(body.order) ? body.order.slice(0, 7).map((n) => clean(n, 2)) : [];
   const strengths = Array.isArray(body.strengths) ? body.strengths.slice(0, 7).map((s) => clean(s, 300)) : [];
   const stuck = clean(body.stuckRoom, 200);
+  const stuckRooms = Array.isArray(body.stuckRooms) ? body.stuckRooms.slice(0, 7) : [];
+  const summary = clean(body.summary, 600);
   const freeText = clean(body.freeText, 2000);
   const date = new Date().toLocaleString("de-DE", { timeZone: "Europe/Berlin", dateStyle: "medium", timeStyle: "short" });
 
@@ -140,7 +142,20 @@ function buildDescription(body) {
   });
   lines.push("");
   lines.push("WHERE THEY GOT STUCK");
-  lines.push(stuck || "Nowhere: only positive cards selected");
+  if (stuckRooms.length) {
+    stuckRooms.forEach((r) => {
+      const n = Number(r.problemCards) || 0;
+      lines.push(
+        "- " + clean(r.name, 200) + " (Room " + clean(r.number, 2) + "): " +
+        n + " problem card" + (n === 1 ? "" : "s") + (r.main ? "  [MAIN]" : "")
+      );
+    });
+  } else {
+    lines.push(stuck || "Nowhere: only positive cards selected");
+  }
+  if (summary) {
+    lines.push("Summary shown: " + summary);
+  }
   lines.push("");
   lines.push("STRENGTHS");
   if (strengths.length) strengths.forEach((s) => lines.push("- " + s));

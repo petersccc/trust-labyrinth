@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<title>Result preview (test tool)</title>
+<!--
+  Test tool, not part of the labyrinth. Loads the page in a phone-sized
+  frame and walks through all 7 rooms with the given answers, then shows
+  the result page in full length. Used for review screenshots:
+    tools/result-preview.html?lang=de&picks=[[4],[1,2],[4],[4],[4],[4],[4]]
+  picks = the card numbers chosen at positions 1 to 7 of the walk.
+-->
+<style>
+  html, body { margin: 0; background: #F3EEE4; }
+  iframe { border: 0; width: 390px; height: 844px; display: block; }
+</style>
+</head>
+<body>
+<iframe id="f"></iframe>
+<script>
+  const params = new URLSearchParams(location.search);
+  const lang = params.get("lang") || "de";
+  const picks = JSON.parse(params.get("picks") || "[[4],[4],[4],[4],[4],[4],[4]]");
+  const frame = document.getElementById("f");
+  frame.src = "../?lang=" + encodeURIComponent(lang);
+  frame.onload = () => {
+    const d = frame.contentDocument;
+    // Show the map path fully drawn instead of mid-animation.
+    const style = d.createElement("style");
+    style.textContent = ".map .draw{animation:none!important;stroke-dashoffset:0!important}";
+    d.head.appendChild(style);
+    d.querySelector("[data-action=enter]").click();
+    for (let i = 0; i < 7; i++) {
+      (picks[i] || []).forEach((n) => d.querySelector('[data-card="' + n + '"]').click());
+      d.querySelector("[data-action=next]").click();
+      d.querySelector("[data-action=continue]").click();
+    }
+    frame.style.height = d.documentElement.scrollHeight + "px";
+    // &privacy=1: also open the privacy notice overlay (shown at phone height).
+    if (params.get("privacy")) {
+      frame.style.height = "844px";
+      d.querySelector(".footer a").click();
+    }
+    document.title = "ready " + d.documentElement.scrollHeight;
+  };
+</script>
+</body>
+</html>

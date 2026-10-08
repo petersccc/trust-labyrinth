@@ -1,0 +1,1097 @@
+{
+  "fixed_elements_on_every_page": [
+    {
+      "element": "Footer",
+      "en": "Peters Cross-Cultural Communication",
+      "de": "Peters Cross-Cultural Communication",
+      "zh": "Peters Cross-Cultural Communication"
+    },
+    {
+      "element": "Footer link",
+      "en": "Privacy notice",
+      "de": "Datenschutzhinweis",
+      "zh": "隐私声明"
+    },
+    {
+      "element": "Back button",
+      "en": "Back",
+      "de": "Zurück",
+      "zh": "返回"
+    },
+    {
+      "element": "Next button",
+      "en": "NEXT",
+      "de": "WEITER",
+      "zh": "下一步"
+    },
+    {
+      "element": "Header band label",
+      "en": "ROOM {n} OF 7",
+      "de": "RAUM {n} VON 7",
+      "zh": "第{n}个房间（共7个）"
+    },
+    {
+      "element": "Map exit",
+      "en": "Exit",
+      "de": "Ausgang",
+      "zh": "出口"
+    },
+    {
+      "element": "Privacy back button",
+      "en": "Back to the labyrinth",
+      "de": "Zurück zum Labyrinth",
+      "zh": "返回迷宫"
+    },
+    {
+      "element": "Question",
+      "en": "Which of these do you see in your company?",
+      "de": "Was davon erleben Sie in Ihrem Unternehmen?",
+      "zh": "您在公司里遇到过以下哪些情况？"
+    },
+    {
+      "element": "Under the question",
+      "en": "Multiple answers possible",
+      "de": "Mehrfachauswahl möglich",
+      "zh": "可多选"
+    },
+    {
+      "element": "Insight card header",
+      "en": "Why this happens",
+      "de": "Warum das passiert",
+      "zh": "为什么会这样"
+    },
+    {
+      "element": "Error message",
+      "en": "Choose at least one answer to continue.",
+      "de": "Bitte wählen Sie mindestens eine Antwort aus.",
+      "zh": "请至少选择一个答案后继续。"
+    }
+  ],
+  "slide_1_opening": [
+    {
+      "element": "Caption under photo",
+      "en": "Made by Katarina Peters",
+      "de": "Erstellt von Katarina Peters",
+      "zh": "制作：Katarina Peters"
+    },
+    {
+      "element": "Title",
+      "en": "Trust Labyrinth",
+      "de": "Das Vertrauenslabyrinth",
+      "zh": "信任迷宫"
+    },
+    {
+      "element": "Based on line (italic)",
+      "en": "This Trust Infrastructure Checkup is based on employee reviews from 2024 to 2026 at 17 Chinese companies in Germany.",
+      "de": "Dieser Check zur Vertrauensinfrastruktur basiert auf Mitarbeiterbewertungen aus den Jahren 2024 bis 2026 von 17 chinesischen Unternehmen in Deutschland.",
+      "zh": "本信任体系自测基于2024年至2026年间德国17家中资企业的员工评价。"
+    },
+    {
+      "element": "Button",
+      "en": "ENTER THE LABYRINTH",
+      "de": "INS LABYRINTH",
+      "zh": "进入迷宫"
+    }
+  ],
+  "room_1_distant_decisions": [
+    {
+      "element": "Room name",
+      "en": "Distant decisions",
+      "de": "Entscheidungen aus der Ferne",
+      "zh": "远方的决策"
+    },
+    {
+      "element": "Intro",
+      "en": "In most Chinese companies in Germany, important decisions are made at headquarters in China. That alone is not the problem.",
+      "de": "In den meisten chinesischen Unternehmen in Deutschland werden wichtige Entscheidungen in der Zentrale in China getroffen. Das allein ist nicht das Problem.",
+      "zh": "在大多数在德中资企业中，重要决策由中国总部做出。这本身并不是问题。"
+    },
+    {
+      "element": "Key line",
+      "en": "The problem appears when these decisions reach Germany without any explanation.",
+      "de": "Das Problem entsteht, wenn diese Entscheidungen ohne jede Erklärung in Deutschland ankommen.",
+      "zh": "问题在于，这些决策传到德国时没有任何解释。"
+    },
+    {
+      "element": "Small note",
+      "en": "In the reviews, this gap comes up more often than any other.",
+      "de": "In den Bewertungen taucht diese Lücke häufiger auf als jede andere.",
+      "zh": "在员工评价中，这一落差出现的频率高于其他任何问题。"
+    },
+    {
+      "element": "Card 1",
+      "en": "Decisions arrive without explanation, and plans change soon after.",
+      "de": "Entscheidungen kommen ohne Erklärung an, und kurz darauf ändern sich die Pläne.",
+      "zh": "决策下达时没有解释，而且计划很快又会改变。"
+    },
+    {
+      "element": "Card 2",
+      "en": "Local managers and HR cannot answer our questions, because the decisions are made in China.",
+      "de": "Lokale Führungskräfte und HR können unsere Fragen nicht beantworten, weil die Entscheidungen in China fallen.",
+      "zh": "本地管理人员和人力资源部门无法回答我们的问题，因为决策是在中国做出的。"
+    },
+    {
+      "element": "Card 3",
+      "en": "We feel headquarters does not trust local staff with real decisions.",
+      "de": "Wir haben das Gefühl, dass die Zentrale den Mitarbeitenden vor Ort keine echten Entscheidungen zutraut.",
+      "zh": "我们感觉总部不信任本地员工参与真正的决策。"
+    },
+    {
+      "element": "Card 4 (positive)",
+      "en": "Someone on site explains decisions from headquarters to the team.",
+      "de": "Jemand vor Ort erklärt dem Team die Entscheidungen der Zentrale.",
+      "zh": "有人在本地向团队解释总部的决策。"
+    },
+    {
+      "element": "Privacy line",
+      "en": "This checkup is anonymous unless you choose to leave your email. Privacy notice",
+      "de": "Dieser Check ist anonym, es sei denn, Sie hinterlassen Ihre E-Mail-Adresse. Datenschutzhinweis",
+      "zh": "本自测为匿名，除非您选择留下电子邮箱。隐私声明"
+    },
+    {
+      "element": "Insight: label 1",
+      "en": "AT HEADQUARTERS",
+      "de": "IN DER ZENTRALE",
+      "zh": "在总部"
+    },
+    {
+      "element": "Insight: text 1",
+      "en": "A decision is a starting point that can still change.",
+      "de": "Eine Entscheidung ist ein Ausgangspunkt, der sich noch ändern kann.",
+      "zh": "决策是一个起点，之后仍可调整。",
+      "bold_words_en": [
+        "starting point"
+      ],
+      "bold_words_de": [
+        "Ausgangspunkt"
+      ],
+      "bold_words_zh": [
+        "起点"
+      ]
+    },
+    {
+      "element": "Insight: label 2",
+      "en": "IN GERMANY",
+      "de": "IN DEUTSCHLAND",
+      "zh": "在德国"
+    },
+    {
+      "element": "Insight: text 2",
+      "en": "A decision is final. Planning starts right away.",
+      "de": "Eine Entscheidung ist endgültig. Die Planung beginnt sofort.",
+      "zh": "决策就是定案，随即开始做计划。",
+      "bold_words_en": [
+        "final"
+      ],
+      "bold_words_de": [
+        "endgültig"
+      ],
+      "bold_words_zh": [
+        "定案"
+      ]
+    },
+    {
+      "element": "Insight: bridge",
+      "en": "When plans change, these two ways of deciding collide.",
+      "de": "Wenn sich Pläne ändern, prallen diese zwei Arten zu entscheiden aufeinander.",
+      "zh": "当计划改变时，这两种决策方式就会发生碰撞。"
+    },
+    {
+      "element": "Insight: key line",
+      "en": "Without someone on site to explain, the gap keeps growing.",
+      "de": "Ohne jemanden vor Ort, der erklärt, wird die Lücke immer größer.",
+      "zh": "如果本地没有人来解释，这道鸿沟会越来越大。"
+    },
+    {
+      "element": "Button",
+      "en": "LET'S ENTER THE NEXT ROOM:",
+      "de": "TRETEN SIE EIN:",
+      "zh": "请进："
+    },
+    {
+      "element": "Countdown",
+      "en": "6 rooms to go",
+      "de": "Noch 6 Räume",
+      "zh": "还剩6个房间"
+    }
+  ],
+  "room_2_the_control_room": [
+    {
+      "element": "Room name",
+      "en": "The control room",
+      "de": "Der Kontrollraum",
+      "zh": "控制室"
+    },
+    {
+      "element": "Intro",
+      "en": "New rules, constant monitoring and decisions made without consulting the team are the issues employees describe most often.",
+      "de": "Neue Regeln, ständige Kontrolle und Entscheidungen ohne Rücksprache mit dem Team sind die Themen, die Mitarbeitende am häufigsten beschreiben.",
+      "zh": "新规定、持续监控，以及未与团队沟通就做出的决策，是员工最常提到的问题。"
+    },
+    {
+      "element": "Key line",
+      "en": "When trust is missing, control fills the gap.",
+      "de": "Wo Vertrauen fehlt, füllt Kontrolle die Lücke.",
+      "zh": "信任缺失时，控制就会填补空白。"
+    },
+    {
+      "element": "Card 1",
+      "en": "New rules appear almost every day.",
+      "de": "Fast jeden Tag gibt es neue Regeln.",
+      "zh": "几乎每天都有新规定。"
+    },
+    {
+      "element": "Card 2",
+      "en": "We feel watched more than trusted.",
+      "de": "Wir fühlen uns eher überwacht, als dass man uns vertraut.",
+      "zh": "比起被信任，我们感觉自己更多是被监视。"
+    },
+    {
+      "element": "Card 3",
+      "en": "Things are assumed instead of communicated.",
+      "de": "Vieles wird stillschweigend vorausgesetzt, statt es anzusprechen.",
+      "zh": "很多事情被默认为理所当然，而不是被说出来。"
+    },
+    {
+      "element": "Card 4 (positive)",
+      "en": "Our employer acts on feedback.",
+      "de": "Unser Arbeitgeber setzt Feedback um.",
+      "zh": "我们的雇主会根据反馈采取行动。"
+    },
+    {
+      "element": "Insight: label 1",
+      "en": "CHINESE LEADERSHIP",
+      "de": "CHINESISCHE FÜHRUNG",
+      "zh": "中方管理层"
+    },
+    {
+      "element": "Insight: text 1",
+      "en": "Trust is built through a personal relationship over time. Until it exists, close oversight is the normal way to lead.",
+      "de": "Vertrauen entsteht mit der Zeit durch eine persönliche Beziehung. Solange sie fehlt, ist enge Aufsicht die normale Art zu führen.",
+      "zh": "信任要靠长期的个人关系建立。在此之前，严密监督是正常的管理方式。",
+      "bold_words_en": [
+        "personal relationship"
+      ],
+      "bold_words_de": [
+        "persönliche Beziehung"
+      ],
+      "bold_words_zh": [
+        "个人关系"
+      ]
+    },
+    {
+      "element": "Insight: label 2",
+      "en": "GERMAN EMPLOYEES",
+      "de": "DEUTSCHE MITARBEITENDE",
+      "zh": "德方员工"
+    },
+    {
+      "element": "Insight: text 2",
+      "en": "They take the same oversight as doubt about their competence, and pull back.",
+      "de": "Sie verstehen dieselbe Aufsicht als Zweifel an ihrer Kompetenz und ziehen sich zurück.",
+      "zh": "他们把同样的监督理解为对自身能力的怀疑，于是选择退缩。",
+      "bold_words_en": [
+        "doubt about their competence"
+      ],
+      "bold_words_de": [
+        "Zweifel an ihrer Kompetenz"
+      ],
+      "bold_words_zh": [
+        "对自身能力的怀疑"
+      ]
+    },
+    {
+      "element": "Insight: bridge",
+      "en": "That creates distance, so control grows on both sides, but in opposite directions.",
+      "de": "Das schafft Distanz, und die Kontrolle wächst auf beiden Seiten, aber in entgegengesetzte Richtungen.",
+      "zh": "这造成了距离，于是双方的控制都在增加，但方向相反。"
+    },
+    {
+      "element": "Insight: key line",
+      "en": "One side checks more, the other side shares less.",
+      "de": "Die eine Seite kontrolliert mehr, die andere teilt weniger.",
+      "zh": "一方管得更多，另一方说得更少。"
+    },
+    {
+      "element": "Button",
+      "en": "LET ME TAKE YOU TO THE NEXT ROOM:",
+      "de": "ICH FÜHRE SIE WEITER:",
+      "zh": "我带您继续："
+    },
+    {
+      "element": "Countdown",
+      "en": "5 rooms to go",
+      "de": "Noch 5 Räume",
+      "zh": "还剩5个房间"
+    }
+  ],
+  "room_3_the_two_circles": [
+    {
+      "element": "Room name",
+      "en": "The two circles",
+      "de": "Die zwei Kreise",
+      "zh": "两个圈子"
+    },
+    {
+      "element": "Intro",
+      "en": "When the distance grows, a company can split into two groups.",
+      "de": "Wenn die Distanz wächst, kann sich ein Unternehmen in zwei Gruppen spalten.",
+      "zh": "当距离不断拉大，一家公司可能分裂成两个群体。"
+    },
+    {
+      "element": "Key line",
+      "en": "One room where decisions happen, and another for the rest of the team.",
+      "de": "Ein Raum, in dem Entscheidungen fallen, und ein anderer für den Rest des Teams.",
+      "zh": "一个房间里做决策，另一个房间留给团队的其他人。"
+    },
+    {
+      "element": "Card 1",
+      "en": "Without speaking Chinese, it is hard to be involved.",
+      "de": "Ohne Chinesischkenntnisse ist es schwer, einbezogen zu werden.",
+      "zh": "不会说中文，就很难参与进来。"
+    },
+    {
+      "element": "Card 2",
+      "en": "Real decisions happen in a circle we are not part of.",
+      "de": "Echte Entscheidungen fallen in einem Kreis, zu dem wir nicht gehören.",
+      "zh": "真正的决策发生在一个我们不属于的圈子里。"
+    },
+    {
+      "element": "Card 3",
+      "en": "Local staff are mainly a friendly face for partners and customers.",
+      "de": "Mitarbeitende vor Ort sind vor allem ein freundliches Gesicht für Partner und Kunden.",
+      "zh": "本地员工主要是面向合作伙伴和客户的“友好面孔”。"
+    },
+    {
+      "element": "Card 4 (positive)",
+      "en": "Our international team is a strength we are proud of.",
+      "de": "Unser internationales Team ist eine Stärke, auf die wir stolz sind.",
+      "zh": "我们的国际化团队是我们引以为豪的优势。"
+    },
+    {
+      "element": "Insight: label",
+      "en": "WHAT HAPPENS",
+      "de": "WAS PASSIERT",
+      "zh": "发生了什么"
+    },
+    {
+      "element": "Insight: text",
+      "en": "International teams need a shared language. When decisions are made only in Chinese, local staff see a closed circle, even when nobody meant to exclude them.",
+      "de": "Internationale Teams brauchen eine gemeinsame Sprache. Wenn Entscheidungen nur auf Chinesisch getroffen werden, sehen die Mitarbeitenden vor Ort einen geschlossenen Kreis, auch wenn niemand sie ausschließen wollte.",
+      "zh": "国际团队需要一种共同的语言。当决策只用中文讨论时，本地员工看到的是一个封闭的圈子，即使没有人有意排斥他们。",
+      "bold_words_en": [
+        "shared language",
+        "closed circle"
+      ],
+      "bold_words_de": [
+        "gemeinsame Sprache",
+        "geschlossenen Kreis"
+      ],
+      "bold_words_zh": [
+        "共同的语言",
+        "封闭的圈子"
+      ]
+    },
+    {
+      "element": "Insight: key line",
+      "en": "The longer this divide lasts, the harder it becomes to step in.",
+      "de": "Je länger diese Trennung anhält, desto schwerer wird es, hineinzukommen.",
+      "zh": "这种隔阂持续得越久，就越难融入。"
+    },
+    {
+      "element": "Button",
+      "en": "LET'S EXPLORE THE NEXT ROOM:",
+      "de": "ERKUNDEN WIR DEN NÄCHSTEN RAUM:",
+      "zh": "我们去探索下一个房间："
+    },
+    {
+      "element": "Countdown",
+      "en": "4 rooms to go",
+      "de": "Noch 4 Räume",
+      "zh": "还剩4个房间"
+    }
+  ],
+  "room_4_the_changing_plan": [
+    {
+      "element": "Room name",
+      "en": "The changing plan",
+      "de": "Der wechselnde Plan",
+      "zh": "不断变化的计划"
+    },
+    {
+      "element": "Intro",
+      "en": "Decisions made far away also get changed from far away.",
+      "de": "Was in der Ferne entschieden wird, wird auch aus der Ferne geändert.",
+      "zh": "远方做出的决定，也会从远方被改变。"
+    },
+    {
+      "element": "Key line",
+      "en": "Plans, targets and rules shift before they have settled.",
+      "de": "Pläne, Ziele und Regeln ändern sich, bevor sie sich eingespielt haben.",
+      "zh": "计划、目标和规则还没稳定下来就又变了。"
+    },
+    {
+      "element": "Card 1",
+      "en": "Decisions are revised again and again.",
+      "de": "Entscheidungen werden immer wieder revidiert.",
+      "zh": "决策一再被修改。"
+    },
+    {
+      "element": "Card 2",
+      "en": "There is no long term plan for our site.",
+      "de": "Es gibt keinen langfristigen Plan für unseren Standort.",
+      "zh": "我们德国这边没有长期规划。"
+    },
+    {
+      "element": "Card 3",
+      "en": "Targets or rules change from month to month.",
+      "de": "Ziele oder Regeln ändern sich von Monat zu Monat.",
+      "zh": "目标或规则每个月都在变。"
+    },
+    {
+      "element": "Card 4 (positive)",
+      "en": "We have room to build new structures ourselves.",
+      "de": "Wir haben Raum, selbst neue Strukturen aufzubauen.",
+      "zh": "我们有空间自己搭建新的结构。"
+    },
+    {
+      "element": "Insight: label 1",
+      "en": "IN CHINA",
+      "de": "IN CHINA",
+      "zh": "在中国"
+    },
+    {
+      "element": "Insight: text 1",
+      "en": "The plan for the German site is still being shaped. New information from headquarters can change it.",
+      "de": "Der Plan für den deutschen Standort ist noch in Arbeit. Neue Informationen aus der Zentrale können ihn ändern.",
+      "zh": "德国业务的规划仍在制定中。总部的新信息随时可能改变它。",
+      "bold_words_en": [
+        "still being shaped"
+      ],
+      "bold_words_de": [
+        "noch in Arbeit"
+      ],
+      "bold_words_zh": [
+        "仍在制定中"
+      ]
+    },
+    {
+      "element": "Insight: label 2",
+      "en": "IN GERMANY",
+      "de": "IN DEUTSCHLAND",
+      "zh": "在德国"
+    },
+    {
+      "element": "Insight: text 2",
+      "en": "Teams plan carefully and far ahead. Each change costs work already done.",
+      "de": "Teams planen sorgfältig und weit im Voraus. Jede Änderung kostet bereits geleistete Arbeit.",
+      "zh": "团队会周密地提前很久做计划。每一次变动都会让已完成的工作白费。",
+      "bold_words_en": [
+        "plan carefully and far ahead"
+      ],
+      "bold_words_de": [
+        "planen sorgfältig und weit im Voraus"
+      ],
+      "bold_words_zh": [
+        "周密地提前很久做计划"
+      ]
+    },
+    {
+      "element": "Insight: key line",
+      "en": "Without someone explaining the reasons, changes look random instead of part of a larger direction.",
+      "de": "Ohne jemanden, der die Gründe erklärt, wirken Änderungen willkürlich statt wie Teil einer größeren Richtung.",
+      "zh": "如果没有人解释原因，这些变化就显得随意，而不是一个更大方向的一部分。"
+    },
+    {
+      "element": "Button",
+      "en": "STEP INTO THE NEXT ROOM:",
+      "de": "WEITER GEHT ES:",
+      "zh": "继续前进："
+    },
+    {
+      "element": "Countdown",
+      "en": "3 rooms to go",
+      "de": "Noch 3 Räume",
+      "zh": "还剩3个房间"
+    }
+  ],
+  "room_5_the_call_after_hours": [
+    {
+      "element": "Room name",
+      "en": "Working around the clock",
+      "de": "Arbeit rund um die Uhr",
+      "zh": "全天候工作"
+    },
+    {
+      "element": "Intro",
+      "en": "Changing plans bring pressure.",
+      "de": "Wechselnde Pläne bringen Druck.",
+      "zh": "不断变化的计划带来压力。"
+    },
+    {
+      "element": "Key line",
+      "en": "Employees mention the burden of evening meetings, constant availability and high targets.",
+      "de": "Mitarbeitende nennen die Belastung durch Abendtermine, ständige Erreichbarkeit und hohe Zielvorgaben.",
+      "zh": "员工提到晚间会议、随时待命和高指标带来的负担。"
+    },
+    {
+      "element": "Card 1",
+      "en": "Meetings take place outside working hours.",
+      "de": "Meetings finden außerhalb der Arbeitszeit statt.",
+      "zh": "会议在工作时间以外进行。"
+    },
+    {
+      "element": "Card 2",
+      "en": "We are expected to be available at all times.",
+      "de": "Von uns wird erwartet, jederzeit erreichbar zu sein.",
+      "zh": "我们被要求随时保持联系。"
+    },
+    {
+      "element": "Card 3",
+      "en": "Target pressure is high, and there is little flexibility on where we work.",
+      "de": "Der Zieldruck ist hoch, und beim Arbeitsort gibt es wenig Flexibilität.",
+      "zh": "指标压力很大，而且工作地点几乎没有灵活性。"
+    },
+    {
+      "element": "Card 4 (positive)",
+      "en": "We have flexible working hours or can work remotely.",
+      "de": "Wir haben flexible Arbeitszeiten oder können remote arbeiten.",
+      "zh": "我们有弹性工作时间，或者可以远程办公。"
+    },
+    {
+      "element": "Insight: label 1",
+      "en": "IN CHINA",
+      "de": "IN CHINA",
+      "zh": "在中国"
+    },
+    {
+      "element": "Insight: text 1",
+      "en": "Long working days and being reachable at all times are a sign of commitment in fast growing companies. Headquarters is also six to seven hours ahead.",
+      "de": "Lange Arbeitstage und ständige Erreichbarkeit gelten in schnell wachsenden Unternehmen als Zeichen von Engagement. Dazu kommt, dass die Zentrale sechs bis sieben Stunden voraus ist.",
+      "zh": "在快速发展的企业里，长时间工作和随时待命被视为投入的表现。此外，总部比德国快六到七个小时。",
+      "bold_words_en": [
+        "sign of commitment"
+      ],
+      "bold_words_de": [
+        "Zeichen von Engagement"
+      ],
+      "bold_words_zh": [
+        "投入的表现"
+      ]
+    },
+    {
+      "element": "Insight: label 2",
+      "en": "IN GERMANY",
+      "de": "IN DEUTSCHLAND",
+      "zh": "在德国"
+    },
+    {
+      "element": "Insight: text 2",
+      "en": "Availability is weighed against clear working hours.",
+      "de": "Erreichbarkeit wird gegen klare Arbeitszeiten abgewogen.",
+      "zh": "随时待命要与明确的工作时间取得平衡。",
+      "bold_words_en": [
+        "clear working hours"
+      ],
+      "bold_words_de": [
+        "klare Arbeitszeiten"
+      ],
+      "bold_words_zh": [
+        "明确的工作时间"
+      ]
+    },
+    {
+      "element": "Insight: key line",
+      "en": "Both sides follow rules they consider normal, but nobody has agreed on a shared one.",
+      "de": "Beide Seiten folgen Regeln, die sie für normal halten, aber niemand hat sich auf gemeinsame Regeln geeinigt.",
+      "zh": "双方都在遵循自认为正常的规则，但没有人就共同的规则达成一致。"
+    },
+    {
+      "element": "Button",
+      "en": "ON TO THE NEXT ROOM:",
+      "de": "AUF ZUM NÄCHSTEN RAUM:",
+      "zh": "前往下一个房间："
+    },
+    {
+      "element": "Countdown",
+      "en": "2 rooms to go",
+      "de": "Noch 2 Räume",
+      "zh": "还剩2个房间"
+    }
+  ],
+  "room_6_the_room_of_silence": [
+    {
+      "element": "Room name",
+      "en": "The room of silence",
+      "de": "Der Raum der Stille",
+      "zh": "沉默之屋"
+    },
+    {
+      "element": "Intro",
+      "en": "Regardless of the company or its size, the reviews reach the same breaking point.",
+      "de": "Unabhängig vom Unternehmen und seiner Größe erreichen die Bewertungen denselben Bruchpunkt.",
+      "zh": "无论公司规模大小，员工评价都会走到同一个临界点。"
+    },
+    {
+      "element": "Key line",
+      "en": "Concerns stop being raised, and people leave.",
+      "de": "Bedenken werden nicht mehr geäußert, und Menschen gehen.",
+      "zh": "人们不再提出顾虑，并且选择离开。"
+    },
+    {
+      "element": "Card 1",
+      "en": "People who voice criticism are let go, or leave on their own.",
+      "de": "Wer Kritik äußert, wird entlassen oder geht von selbst.",
+      "zh": "提出批评的人会被辞退，或者自己离职。"
+    },
+    {
+      "element": "Card 2",
+      "en": "Good people are overlooked and leave.",
+      "de": "Gute Leute werden übersehen und gehen.",
+      "zh": "优秀的人被忽视，然后离开。"
+    },
+    {
+      "element": "Card 3",
+      "en": "There is a mood of fear.",
+      "de": "Es herrscht eine Stimmung der Angst.",
+      "zh": "弥漫着一种恐惧的气氛。"
+    },
+    {
+      "element": "Card 4 (positive)",
+      "en": "Colleagues support each other.",
+      "de": "Kolleginnen und Kollegen unterstützen sich gegenseitig.",
+      "zh": "同事之间互相支持。"
+    },
+    {
+      "element": "Insight: label 1",
+      "en": "IN MANY CHINESE ORGANISATIONS",
+      "de": "IN VIELEN CHINESISCHEN ORGANISATIONEN",
+      "zh": "在许多中国组织中"
+    },
+    {
+      "element": "Insight: text 1",
+      "en": "Open criticism of a decision can cost face, so voicing it rarely feels welcome.",
+      "de": "Offene Kritik an einer Entscheidung kann einen Gesichtsverlust bedeuten, deshalb fühlt es sich selten willkommen an, sie zu äußern.",
+      "zh": "公开批评一项决策可能让人丢面子，因此提出批评往往让人感觉不受欢迎。",
+      "bold_words_en": [
+        "cost face"
+      ],
+      "bold_words_de": [
+        "Gesichtsverlust"
+      ],
+      "bold_words_zh": [
+        "丢面子"
+      ]
+    },
+    {
+      "element": "Insight: label 2",
+      "en": "GERMAN EMPLOYEES",
+      "de": "DEUTSCHE MITARBEITENDE",
+      "zh": "德方员工"
+    },
+    {
+      "element": "Insight: text 2",
+      "en": "Those who keep raising concerns do not feel heard, so they go quiet or leave.",
+      "de": "Wer weiter Bedenken äußert, fühlt sich nicht gehört und wird still oder geht.",
+      "zh": "那些一再提出顾虑的人觉得自己没有被倾听，于是要么沉默，要么离开。",
+      "bold_words_en": [
+        "go quiet or leave"
+      ],
+      "bold_words_de": [
+        "wird still oder geht"
+      ],
+      "bold_words_zh": [
+        "要么沉默，要么离开"
+      ]
+    },
+    {
+      "element": "Insight: key line",
+      "en": "The silence is easy to mistake for agreement, and the knowledge of what isn't working leaves with them.",
+      "de": "Die Stille wird leicht mit Zustimmung verwechselt, und das Wissen darüber, was nicht funktioniert, geht mit ihnen.",
+      "zh": "沉默很容易被误认为是同意，而关于哪里出了问题的认知，也随着他们一起离开了。"
+    },
+    {
+      "element": "Button",
+      "en": "ENTER THE LAST ROOM: THE FIRST DAY",
+      "de": "DER LETZTE RAUM: DER ERSTE TAG",
+      "zh": "最后一个房间：第一天"
+    },
+    {
+      "element": "Countdown",
+      "en": "Last room",
+      "de": "Letzter Raum",
+      "zh": "最后一个房间"
+    }
+  ],
+  "room_7_the_first_day": [
+    {
+      "element": "Room name",
+      "en": "The first day",
+      "de": "Der erste Tag",
+      "zh": "第一天"
+    },
+    {
+      "element": "Intro",
+      "en": "Losing an employee means finding and training someone new, which is hard enough on its own. If onboarding starts with the same broken patterns, the new person learns them from day one.",
+      "de": "Wer jemanden aus dem Team verliert, muss eine neue Person finden und einarbeiten, und das ist schon schwer genug. Wenn das Onboarding mit denselben kaputten Mustern beginnt, lernt die neue Person sie vom ersten Tag an.",
+      "zh": "失去一名员工，意味着要找到并培训新人，这本身就已经不容易。如果入职流程从一开始就带着同样的问题模式，新人从第一天起就会学会这些模式。"
+    },
+    {
+      "element": "Key line",
+      "en": "What they find on their first day decides whether the labyrinth starts again.",
+      "de": "Was sie am ersten Tag vorfindet, entscheidet, ob das Labyrinth von vorne beginnt.",
+      "zh": "他们在第一天看到的情况，决定了迷宫是否会重新开始。"
+    },
+    {
+      "element": "Card 1",
+      "en": "New colleagues have a bumpy start, and a lot depends on who they happen to ask.",
+      "de": "Neue Kolleginnen und Kollegen haben einen holprigen Start, und vieles hängt davon ab, wen sie zufällig fragen.",
+      "zh": "新同事的起步磕磕绊绊，很多事情取决于他们碰巧问了谁。"
+    },
+    {
+      "element": "Card 2",
+      "en": "There are no training programmes or clear career paths.",
+      "de": "Es gibt keine Trainingsprogramme und keine klaren Karrierewege.",
+      "zh": "没有培训项目，也没有清晰的职业发展路径。"
+    },
+    {
+      "element": "Card 3",
+      "en": "New managers from China arrive without knowing the German market.",
+      "de": "Neue Führungskräfte aus China kommen an, ohne den deutschen Markt zu kennen.",
+      "zh": "来自中国的新管理者到任时并不了解德国市场。"
+    },
+    {
+      "element": "Card 4 (positive)",
+      "en": "Training budgets are available and used.",
+      "de": "Weiterbildungsbudgets sind vorhanden und werden genutzt.",
+      "zh": "有培训预算，而且得到了使用。"
+    },
+    {
+      "element": "Insight: label 1",
+      "en": "STEP 1",
+      "de": "SCHRITT 1",
+      "zh": "第一步"
+    },
+    {
+      "element": "Insight: text 1",
+      "en": "New colleagues learn how a company works from the people already in it.",
+      "de": "Neue Kolleginnen und Kollegen lernen von den Menschen, die schon da sind, wie ein Unternehmen funktioniert.",
+      "zh": "新同事从已经在公司里的人身上学习公司如何运作。",
+      "bold_words_en": [
+        "from the people already in it"
+      ],
+      "bold_words_de": [
+        "von den Menschen, die schon da sind"
+      ],
+      "bold_words_zh": [
+        "从已经在公司里的人身上"
+      ]
+    },
+    {
+      "element": "Insight: label 2",
+      "en": "STEP 2",
+      "de": "SCHRITT 2",
+      "zh": "第二步"
+    },
+    {
+      "element": "Insight: text 2",
+      "en": "If existing issues stay unsolved and the team works with friction, that friction is the first thing they learn.",
+      "de": "Wenn bestehende Probleme ungelöst bleiben und das Team mit Reibung arbeitet, ist genau diese Reibung das Erste, was sie lernen.",
+      "zh": "如果现有问题一直得不到解决，团队在摩擦中工作，那么这种摩擦就是他们最先学到的东西。",
+      "bold_words_en": [
+        "that friction is the first thing they learn"
+      ],
+      "bold_words_de": [
+        "ist genau diese Reibung das Erste, was sie lernen"
+      ],
+      "bold_words_zh": [
+        "这种摩擦就是他们最先学到的东西"
+      ]
+    },
+    {
+      "element": "Insight: key line",
+      "en": "Onboarding alone cannot fix the problem. It passes on what is already there.",
+      "de": "Onboarding allein kann das Problem nicht lösen. Es gibt nur weiter, was ohnehin schon da ist.",
+      "zh": "仅靠入职培训无法解决问题。它只会让已有的问题延续下去。"
+    },
+    {
+      "element": "Button",
+      "en": "LET ME TAKE YOU TO THE EXIT",
+      "de": "ICH FÜHRE SIE ZUM AUSGANG",
+      "zh": "我带您走向出口"
+    }
+  ],
+  "slide_9_result_page": [
+    {
+      "element": "Header label",
+      "en": "THE EXIT",
+      "de": "DER AUSGANG",
+      "zh": "出口"
+    },
+    {
+      "element": "Header title",
+      "en": "Your way through the labyrinth",
+      "de": "Ihr Weg durch das Labyrinth",
+      "zh": "您穿越迷宫的路线"
+    },
+    {
+      "element": "Map legend 1",
+      "en": "Passed",
+      "de": "Durchquert",
+      "zh": "已通过"
+    },
+    {
+      "element": "Map legend 2",
+      "en": "Stuck",
+      "de": "Steckengeblieben",
+      "zh": "受阻"
+    },
+    {
+      "element": "Strengths label",
+      "en": "WHERE YOU ARE STRONG",
+      "de": "WO SIE STARK SIND",
+      "zh": "您的优势"
+    },
+    {
+      "element": "If no positive cards",
+      "en": "You didn't mark any strengths in this labyrinth.",
+      "de": "Sie haben in diesem Labyrinth keine Stärken markiert.",
+      "zh": "您在这个迷宫中没有标记任何优势。"
+    },
+    {
+      "element": "Stuck label",
+      "en": "WHERE YOU GOT STUCK",
+      "de": "WO SIE FESTSTECKEN",
+      "zh": "您受阻的地方"
+    },
+    {
+      "element": "Stuck label (main, 2 or more stuck rooms)",
+      "en": "WHERE YOU GOT STUCK MOST",
+      "de": "WO SIE AM MEISTEN FESTSTECKEN",
+      "zh": "您受阻最多的地方"
+    },
+    {
+      "element": "Stuck count (2 or more stuck rooms)",
+      "en": "You got stuck in {n} of 7 rooms.",
+      "de": "Sie stecken in {n} von 7 Räumen fest.",
+      "zh": "您在7个房间中的{n}个受阻。"
+    },
+    {
+      "element": "Summary A (trust path and information path)",
+      "en": "The friction runs along both paths: how decisions and information reach your team, and how trust is built. The two are connected, so working on one eases the other.",
+      "de": "Die Reibung zieht sich durch beide Wege: wie Entscheidungen und Informationen Ihr Team erreichen und wie Vertrauen entsteht. Beides hängt zusammen, deshalb entlastet die Arbeit am einen auch das andere.",
+      "zh": "摩擦贯穿两条路径：决策和信息如何传达到您的团队，以及信任如何建立。两者相互关联，因此改善其中一个也会缓解另一个。"
+    },
+    {
+      "element": "Summary B (trust path only)",
+      "en": "Most of the friction sits on the trust path: control, language and who belongs to the circle where decisions happen.",
+      "de": "Die meiste Reibung liegt auf dem Weg des Vertrauens: Kontrolle, Sprache und die Frage, wer zum Kreis gehört, in dem Entscheidungen fallen.",
+      "zh": "大部分摩擦集中在信任这条路径上：控制、语言，以及谁属于做决策的圈子。"
+    },
+    {
+      "element": "Summary C (information path only)",
+      "en": "Most of the friction sits on the information path: how decisions, changing plans and working hours reach your team.",
+      "de": "Die meiste Reibung liegt auf dem Weg der Information: wie Entscheidungen, wechselnde Pläne und Arbeitszeiten Ihr Team erreichen.",
+      "zh": "大部分摩擦集中在信息这条路径上：决策、不断变化的计划和工作时间如何影响您的团队。"
+    },
+    {
+      "element": "Summary D (only rooms 1, 6, 7)",
+      "en": "The friction is not limited to one place. It reaches from how decisions arrive to how your team works with them every day.",
+      "de": "Die Reibung beschränkt sich nicht auf einen Ort. Sie reicht davon, wie Entscheidungen ankommen, bis dahin, wie Ihr Team täglich damit arbeitet.",
+      "zh": "摩擦并不局限于一个地方。它从决策如何传达，一直延伸到您的团队每天如何应对这些决策。"
+    },
+    {
+      "element": "Result: Room 1",
+      "en": "Distant decisions: Decisions reach your team, but the reasons behind them don't.",
+      "de": "Entscheidungen aus der Ferne: Entscheidungen erreichen Ihr Team, die Gründe dahinter nicht.",
+      "zh": "远方的决策：决策传达到了您的团队，但背后的原因没有。",
+      "bold_words_en": [
+        "Distant decisions:"
+      ]
+    },
+    {
+      "element": "Result: Room 2",
+      "en": "The control room: Control is filling the space where trust should be.",
+      "de": "Der Kontrollraum: Kontrolle füllt den Raum, in dem Vertrauen sein sollte.",
+      "zh": "控制室：控制正在占据本该属于信任的空间。",
+      "bold_words_en": [
+        "The control room:"
+      ]
+    },
+    {
+      "element": "Result: Room 3",
+      "en": "The two circles: Part of your team is outside the circle where decisions happen.",
+      "de": "Die zwei Kreise: Ein Teil Ihres Teams steht außerhalb des Kreises, in dem Entscheidungen fallen.",
+      "zh": "两个圈子：您的部分团队成员处在决策圈之外。",
+      "bold_words_en": [
+        "The two circles:"
+      ]
+    },
+    {
+      "element": "Result: Room 4",
+      "en": "The changing plan: Changing plans are costing your team work and confidence.",
+      "de": "Der wechselnde Plan: Wechselnde Pläne kosten Ihr Team Arbeit und Zuversicht.",
+      "zh": "不断变化的计划：频繁变化的计划正在消耗团队的工作成果和信心。",
+      "bold_words_en": [
+        "The changing plan:"
+      ]
+    },
+    {
+      "element": "Result: Room 5",
+      "en": "Working around the clock: Chinese and German ideas of dedication don't match, and it is causing dissatisfaction.",
+      "de": "Arbeit rund um die Uhr: Chinesische und deutsche Vorstellungen von Engagement passen nicht zusammen, und das sorgt für Unzufriedenheit.",
+      "zh": "全天候工作：中德双方对“投入”的理解并不一致，这正在引发不满。",
+      "bold_words_en": [
+        "Working around the clock:"
+      ]
+    },
+    {
+      "element": "Result: Room 6",
+      "en": "The room of silence: Concerns have gone quiet, and people are leaving.",
+      "de": "Der Raum der Stille: Bedenken sind verstummt, und Menschen gehen.",
+      "zh": "沉默之屋：顾虑已经无人提起，人员正在流失。",
+      "bold_words_en": [
+        "The room of silence:"
+      ]
+    },
+    {
+      "element": "Result: Room 7",
+      "en": "The first day: New colleagues are adopting the old problems on their first day.",
+      "de": "Der erste Tag: Neue Kolleginnen und Kollegen übernehmen die alten Probleme schon am ersten Tag.",
+      "zh": "第一天：新同事在第一天就接手了旧问题。",
+      "bold_words_en": [
+        "The first day:"
+      ]
+    },
+    {
+      "element": "Only positive cards",
+      "en": "You came through without getting stuck. Your team already has what many companies in the reviews are missing. Even strong teams change over time, so a regular check helps you spot small frictions before they grow.",
+      "de": "Sie sind durchgekommen, ohne festzustecken. Ihr Team hat bereits, was vielen Unternehmen in den Bewertungen fehlt. Auch starke Teams verändern sich mit der Zeit, deshalb hilft ein regelmäßiger Check, kleine Reibungen zu erkennen, bevor sie wachsen.",
+      "zh": "您顺利通过，没有受阻。您的团队已经具备了评价中许多公司所欠缺的东西。不过，即使是强大的团队也会随着时间变化，定期检测能帮助您在小摩擦扩大之前及时发现。"
+    },
+    {
+      "element": "CTA heading",
+      "en": "Let's find the way out of your labyrinth",
+      "de": "Finden wir den Weg aus Ihrem Labyrinth",
+      "zh": "一起找到走出迷宫的路"
+    },
+    {
+      "element": "CTA text",
+      "en": "Leave your email and receive a short, personal set of next steps to ease the frictions in your team.",
+      "de": "Hinterlassen Sie Ihre E-Mail-Adresse und erhalten Sie kurze, persönliche nächste Schritte, um die Reibungen in Ihrem Team zu verringern.",
+      "zh": "留下您的电子邮箱，即可收到简短的个性化后续步骤，帮助缓解团队中的摩擦。"
+    },
+    {
+      "element": "Optional field",
+      "en": "What would you try first in your company? (optional)",
+      "de": "Was würden Sie in Ihrem Unternehmen als Erstes versuchen? (optional)",
+      "zh": "在您的公司，您会首先尝试什么？（选填）"
+    },
+    {
+      "element": "Placeholder 1",
+      "en": "Company name",
+      "de": "Firmenname",
+      "zh": "公司名称"
+    },
+    {
+      "element": "Placeholder 2",
+      "en": "you@company.com",
+      "de": "sie@firma.de",
+      "zh": "name@company.com"
+    },
+    {
+      "element": "Consent",
+      "en": "I agree that my answers and my email may be stored so I can receive my personal next steps. Privacy notice",
+      "de": "Ich bin einverstanden, dass meine Antworten und meine E-Mail-Adresse gespeichert werden, damit ich meine persönlichen nächsten Schritte erhalten kann. Datenschutzhinweis",
+      "zh": "我同意存储我的答案和电子邮箱，以便接收我的个性化后续步骤。隐私声明"
+    },
+    {
+      "element": "Button",
+      "en": "SEND ME MY NEXT STEPS",
+      "de": "MEINE NÄCHSTEN SCHRITTE ANFORDERN",
+      "zh": "获取我的后续步骤"
+    },
+    {
+      "element": "Error 1",
+      "en": "Enter a valid email address.",
+      "de": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "zh": "请输入有效的电子邮箱地址。"
+    },
+    {
+      "element": "Error 2",
+      "en": "Confirm the consent to continue.",
+      "de": "Bitte bestätigen Sie Ihre Einwilligung, um fortzufahren.",
+      "zh": "请确认同意后继续。"
+    },
+    {
+      "element": "Error 3 (company name)",
+      "en": "Enter your company name.",
+      "de": "Bitte geben Sie Ihren Firmennamen ein.",
+      "zh": "请输入公司名称。"
+    }
+  ],
+  "slide_10_thank_you": [
+    {
+      "element": "Caption under photo",
+      "en": "Katarina Peters",
+      "de": "Katarina Peters",
+      "zh": "Katarina Peters"
+    },
+    {
+      "element": "Small label",
+      "en": "YOU FOUND THE EXIT",
+      "de": "SIE HABEN DEN AUSGANG GEFUNDEN",
+      "zh": "您找到了出口"
+    },
+    {
+      "element": "Title",
+      "en": "Thank you",
+      "de": "Vielen Dank",
+      "zh": "谢谢"
+    },
+    {
+      "element": "Confirmation",
+      "en": "Your next steps are on their way.",
+      "de": "Ihre nächsten Schritte sind unterwegs.",
+      "zh": "您的后续步骤即将发送给您。"
+    },
+    {
+      "element": "Booking question",
+      "en": "Prefer to talk right away?",
+      "de": "Lieber gleich sprechen?",
+      "zh": "想马上聊聊？"
+    },
+    {
+      "element": "Booking text",
+      "en": "Book a free discovery call and we'll look at your labyrinth together.",
+      "de": "Buchen Sie ein kostenloses Kennenlerngespräch, und wir sehen uns Ihr Labyrinth gemeinsam an.",
+      "zh": "预约一次免费咨询，我们一起看看您的迷宫。"
+    },
+    {
+      "element": "Button",
+      "en": "BOOK A FREE CALL",
+      "de": "KOSTENLOSES GESPRÄCH BUCHEN",
+      "zh": "预约免费咨询"
+    },
+    {
+      "element": "Website",
+      "en": "peters-crosscultural.de",
+      "de": "peters-crosscultural.de",
+      "zh": "peters-crosscultural.de"
+    }
+  ],
+  "page_meta": [
+    {
+      "element": "Page title (browser tab and link preview)",
+      "en": "Trust Labyrinth: Where does your team lose trust?",
+      "de": "Vertrauenslabyrinth: Wo geht in Ihrem Team Vertrauen verloren?",
+      "zh": "信任迷宫：您的团队在哪里失去了信任？"
+    },
+    {
+      "element": "Page description (link preview)",
+      "en": "A short checkup based on employee reviews at 17 Chinese companies in Germany. Find out where your team gets stuck.",
+      "de": "Ein kurzer Check auf Basis von Mitarbeiterbewertungen aus 17 chinesischen Unternehmen in Deutschland. Finden Sie heraus, wo Ihr Team feststeckt.",
+      "zh": "基于德国17家中资企业员工评价的简短自测。看看您的团队卡在了哪里。"
+    }
+  ]
+}
