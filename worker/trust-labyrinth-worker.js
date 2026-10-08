@@ -12,8 +12,10 @@
  *   - If the page URL had a `ref` parameter, search the list for a task
  *     whose "Ref Code" field matches it.
  *     - If found: update that task, set E-Mail to the submitted email and
- *       check "Check-up completed". Source, Version, Outreach Date, the
- *       task name and the existing description are left untouched; the
+ *       check "Check-up completed". Version is set to "Trust Labyrinth"
+ *       only if it is empty; a Version already set is never overwritten.
+ *       Source, Outreach Date, the task name and the existing
+ *       description are left untouched; the
  *       labyrinth answers are added as a comment instead, so outreach
  *       notes already in the description are never overwritten.
  *   - If there was no `ref` parameter, or no task matched it: create a
@@ -84,6 +86,9 @@ export default {
       if (matchedTaskId) {
         await setCustomField(token, matchedTaskId, FIELD_EMAIL, email);
         await setCustomField(token, matchedTaskId, FIELD_CHECKUP_COMPLETED, true);
+        if (await isVersionEmpty(token, matchedTaskId)) {
+          await setCustomField(token, matchedTaskId, FIELD_VERSION, VERSION_OPTION_TRUST_LABYRINTH);
+        }
         await addComment(token, matchedTaskId, description);
         return jsonResponse({ ok: true, action: "updated", taskId: matchedTaskId });
       }
@@ -161,6 +166,18 @@ async function findTaskByRefCode(token, refCode) {
   const data = await res.json();
   const tasks = data.tasks || [];
   return tasks.length > 0 ? tasks[0].id : null;
+}
+
+/**
+ * True when the task's Version dropdown has no option chosen. ClickUp
+ * leaves `value` out (or null) for an unset dropdown.
+ */
+async function isVersionEmpty(token, taskId) {
+  const res = await fetch(`${CLICKUP_API}/task/${taskId}`, { headers: { Authorization: token } });
+  if (!res.ok) throw new Error(`ClickUp get task failed (${res.status})`);
+  const data = await res.json();
+  const field = (data.custom_fields || []).find((f) => f.id === FIELD_VERSION);
+  return !field || field.value === undefined || field.value === null || field.value === "";
 }
 
 async function createTask(token, name, description) {

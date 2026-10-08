@@ -29,8 +29,9 @@ separate Worker: the two checkup Workers stay exactly as they are.
 - `ref` matches an existing task (its Ref Code field): E-Mail is set,
   Check-up completed is ticked, and the answers are added as a
   **comment**, so outreach notes already in that task's description are
-  not overwritten. Version, Source and the task name stay as they were,
-  the same as in the checkups.
+  not overwritten. Version is set to **Trust Labyrinth** only if it is
+  empty on that task; a Version that is already set is never changed.
+  Source and the task name stay as they were.
 
 ## If the list ever changes
 
