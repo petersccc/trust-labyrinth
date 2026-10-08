@@ -1,0 +1,8 @@
+name = "trust-labyrinth-clickup-submit"
+main = "trust-labyrinth-worker.js"
+compatibility_date = "2026-10-08"
+
+# The CLICKUP_API_TOKEN secret is NOT set here (secrets never belong in
+# this file or in git). Set it in the Cloudflare dashboard, or with:
+#   wrangler secret put CLICKUP_API_TOKEN
+# See README.md in this folder for the full checklist.
