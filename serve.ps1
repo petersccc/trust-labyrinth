@@ -11,6 +11,8 @@ $mime = @{
   ".css"  = "text/css; charset=utf-8"
   ".jpg"  = "image/jpeg"
   ".png"  = "image/png"
+  ".woff2" = "font/woff2"
+  ".svg"  = "image/svg+xml"
 }
 
 while ($listener.IsListening) {

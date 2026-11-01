@@ -3,17 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex">
-<title>Result preview (test tool)</title>
+<title>Screen preview (test tool)</title>
 <!--
-  Test tool, not part of the labyrinth. Loads the page in a phone-sized
-  frame and walks through all 7 rooms with the given answers, then shows
-  the result page in full length. Used for review screenshots:
+  Test tool, not part of the labyrinth. Loads the page in a frame and
+  walks through it with the given answers, then stops at one screen, for
+  review screenshots (headless Edge --screenshot).
     tools/result-preview.html?lang=de&picks=[[4],[1,2],[4],[4],[4],[4],[4]]
-  picks = the card numbers chosen at positions 1 to 7 of the walk.
+  picks   card numbers chosen at positions 1 to 7 of the walk
+  screen  opening | room | insight | result (default) | thanks
+  w       frame width in px (390 phone, 1280 desktop); h = frame height
+  privacy=1 also opens the privacy notice overlay
+  The thank you screen fakes the submission inside the frame, so nothing
+  is ever sent to the Worker or ClickUp.
 -->
 <style>
-  html, body { margin: 0; background: #F3EEE4; }
-  iframe { border: 0; width: 390px; height: 844px; display: block; }
+  html, body { margin: 0; background: #F2F2F0; }
+  iframe { border: 0; display: block; }
 </style>
 </head>
 <body>
@@ -22,27 +27,47 @@
   const params = new URLSearchParams(location.search);
   const lang = params.get("lang") || "de";
   const picks = JSON.parse(params.get("picks") || "[[4],[4],[4],[4],[4],[4],[4]]");
+  const screen = params.get("screen") || "result";
+  const w = Number(params.get("w") || 390), h = Number(params.get("h") || 844);
   const frame = document.getElementById("f");
+  frame.style.width = w + "px";
+  frame.style.height = h + "px";
   frame.src = "../?lang=" + encodeURIComponent(lang);
-  frame.onload = () => {
-    const d = frame.contentDocument;
+  frame.onload = async () => {
+    const win = frame.contentWindow, d = frame.contentDocument;
+    // Never reach the Worker from this tool.
+    win.fetch = async () => new win.Response('{"ok":true,"action":"preview"}', { status: 200 });
     // Show the map path fully drawn instead of mid-animation.
     const style = d.createElement("style");
-    style.textContent = ".map .draw{animation:none!important;stroke-dashoffset:0!important}";
+    style.textContent = ".map .draw{animation:none!important;stroke-dashoffset:0!important}.overlay{animation:none!important}";
     d.head.appendChild(style);
-    d.querySelector("[data-action=enter]").click();
+    const q = (s) => d.querySelector(s);
+    const grow = () => { frame.style.height = Math.max(h, d.documentElement.scrollHeight) + "px"; };
+    if (screen === "opening") return grow();
+    q("[data-action=enter]").click();
+    if (screen === "room" || screen === "insight") {
+      (picks[0] || []).forEach((n) => q('[data-card="' + n + '"]').click());
+      if (screen === "insight") { q("[data-action=next]").click(); return; }
+      return grow();
+    }
     for (let i = 0; i < 7; i++) {
-      (picks[i] || []).forEach((n) => d.querySelector('[data-card="' + n + '"]').click());
-      d.querySelector("[data-action=next]").click();
-      d.querySelector("[data-action=continue]").click();
+      (picks[i] || []).forEach((n) => q('[data-card="' + n + '"]').click());
+      q("[data-action=next]").click();
+      q("[data-action=continue]").click();
     }
-    frame.style.height = d.documentElement.scrollHeight + "px";
-    // &privacy=1: also open the privacy notice overlay (shown at phone height).
+    if (screen === "thanks") {
+      const set = (s, v) => { const el = q(s); el.value = v; el.dispatchEvent(new win.Event("input", { bubbles: true })); };
+      set("[name=company]", "Preview"); set("[name=email]", "preview@example.com");
+      q("[name=consent]").click();
+      q("[data-form] button[type=submit]").click();
+      await new Promise((r) => setTimeout(r, 300));
+      return grow();
+    }
+    grow();
     if (params.get("privacy")) {
-      frame.style.height = "844px";
-      d.querySelector(".footer a").click();
+      frame.style.height = h + "px";
+      q(".footer a").click();
     }
-    document.title = "ready " + d.documentElement.scrollHeight;
   };
 </script>
 </body>

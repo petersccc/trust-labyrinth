@@ -271,11 +271,14 @@ function footer() {
 /**
  * The winding labyrinth map: 7 nodes (by the visitor's position, not
  * the room number) and the exit. mode "room": passed and current nodes
- * filled olive on a solid line, the rest hollow tan on a dashed path.
- * mode "result": the full path drawn once, stuck rooms ringed brown.
+ * filled feldgrau on a solid line, the rest hollow on a dashed path.
+ * mode "result": the full path drawn once, stuck rooms ringed in jasper.
  */
 const MAP_POINTS = [[8, 12], [50, 12], [92, 12], [92, 29], [66, 29], [40, 29], [40, 46], [80, 46], [125, 46], [160, 46]];
 const MAP_NODE_INDEX = [0, 1, 2, 4, 5, 7, 8];
+const C_FELDGRAU = "#536969";
+const C_JASPER = "#C16952";
+const C_LINE = "#DADADA";
 
 function pathThrough(lastIndex) {
   return MAP_POINTS.slice(0, lastIndex + 1)
@@ -286,44 +289,53 @@ function pathThrough(lastIndex) {
 function map(mode) {
   const full = pathThrough(MAP_POINTS.length - 1);
   const exitLabel = esc(fixed("Map exit"));
-  let svg = '<svg class="map" viewBox="-2 0 208 58" aria-hidden="true" focusable="false">';
+  let svg = '<svg class="map" viewBox="-4 0 228 58" aria-hidden="true" focusable="false">';
+  svg += '<path d="' + full + '" fill="none" stroke="' + C_LINE + '" stroke-width="2" stroke-dasharray="3 3"/>';
 
   if (mode === "result") {
-    svg += '<path class="draw" pathLength="1" d="' + full + '" fill="none" stroke="#6B6B3A" stroke-width="2.5" stroke-linejoin="round"/>';
+    svg += '<path class="draw" pathLength="1" d="' + full + '" fill="none" stroke="' + C_FELDGRAU + '" stroke-width="2.6" stroke-linejoin="round"/>';
     const order = roomOrder();
     MAP_NODE_INDEX.forEach((idx, i) => {
       const [x, y] = MAP_POINTS[idx];
       if (problemCount(order[i]) > 0) {
-        svg += '<circle cx="' + x + '" cy="' + y + '" r="7.5" fill="#F3EEE4" stroke="#8A5F2E" stroke-width="3"/>' +
-          '<circle cx="' + x + '" cy="' + y + '" r="3" fill="#8A5F2E"/>';
+        svg += '<circle cx="' + x + '" cy="' + y + '" r="7.5" fill="#fff" stroke="' + C_JASPER + '" stroke-width="3"/>' +
+          '<circle cx="' + x + '" cy="' + y + '" r="2.8" fill="' + C_JASPER + '"/>';
       } else {
-        svg += '<circle cx="' + x + '" cy="' + y + '" r="6" fill="#6B6B3A"/>';
+        svg += '<circle cx="' + x + '" cy="' + y + '" r="6" fill="' + C_FELDGRAU + '"/>';
       }
     });
   } else {
     const current = state.pos; // 1..7
     const currentIdx = MAP_NODE_INDEX[current - 1];
-    svg += '<path d="' + full + '" fill="none" stroke="#C4A47C" stroke-width="2" stroke-dasharray="3 3"/>';
     // Solid line through every passed room up to the current one, plus
-    // a short lead toward the next room (as in the mockup).
+    // a short lead toward the next room.
     const [cx, cy] = MAP_POINTS[currentIdx];
     const [nx, ny] = MAP_POINTS[currentIdx + 1];
     const lead = " L" + (cx + (nx - cx) * 0.65) + " " + (cy + (ny - cy) * 0.65);
-    svg += '<path d="' + pathThrough(currentIdx) + lead + '" fill="none" stroke="#6B6B3A" stroke-width="2.5" stroke-linejoin="round"/>';
+    svg += '<path d="' + pathThrough(currentIdx) + lead + '" fill="none" stroke="' + C_FELDGRAU + '" stroke-width="2.6" stroke-linejoin="round"/>';
     MAP_NODE_INDEX.forEach((idx, i) => {
       const [x, y] = MAP_POINTS[idx];
       const position = i + 1;
       if (position < current) {
-        svg += '<circle cx="' + x + '" cy="' + y + '" r="5" fill="#6B6B3A"/>';
+        svg += '<circle cx="' + x + '" cy="' + y + '" r="5" fill="' + C_FELDGRAU + '"/>';
       } else if (position === current) {
-        svg += '<circle cx="' + x + '" cy="' + y + '" r="6.5" fill="#6B6B3A"/>';
+        svg += '<circle cx="' + x + '" cy="' + y + '" r="6.5" fill="' + C_FELDGRAU + '"/>';
       } else {
-        svg += '<circle cx="' + x + '" cy="' + y + '" r="5" fill="#F3EEE4" stroke="#C4A47C" stroke-width="1.5"/>';
+        svg += '<circle cx="' + x + '" cy="' + y + '" r="5" fill="#fff" stroke="#BDBDBD" stroke-width="1.5"/>';
       }
     });
   }
-  svg += '<text x="166" y="49.5">' + exitLabel + "</text></svg>";
+  svg += '<text class="map-exit" x="170" y="49.5">' + exitLabel + "</text></svg>";
   return svg;
+}
+
+/** A text link button in the website style: words, then a jasper arrow. */
+function entryButton(label, attrs) {
+  return '<button class="entry" ' + attrs + '><span>' + esc(label) + '</span><i aria-hidden="true">→</i></button>';
+}
+
+function cardTop(label) {
+  return '<div class="pc-top"><span>' + esc(label) + "</span></div>";
 }
 
 // ------------------------------------------------------------------
@@ -334,22 +346,13 @@ function renderOpening() {
   const s = "slide_1_opening";
   return (
     '<main class="page opening">' + langSwitch() +
-    '<div class="ring-photo opening">' +
-    '<svg width="200" height="200" viewBox="0 0 170 170" aria-hidden="true">' +
-    '<circle cx="85" cy="85" r="80" fill="none" stroke="#6B6B3A" stroke-width="3" stroke-dasharray="440 63" transform="rotate(80 85 85)"/>' +
-    '<circle cx="85" cy="85" r="70" fill="none" stroke="#C4A47C" stroke-width="3" stroke-dasharray="360 80" transform="rotate(200 85 85)"/>' +
-    '<circle cx="85" cy="85" r="60" fill="none" stroke="#6B6B3A" stroke-width="3" stroke-dasharray="320 57" transform="rotate(320 85 85)"/>' +
-    '<line x1="85" y1="5" x2="85" y2="15" stroke="#6B6B3A" stroke-width="3"/>' +
-    '<line x1="15" y1="85" x2="25" y2="85" stroke="#C4A47C" stroke-width="3"/>' +
-    '<line x1="145" y1="85" x2="155" y2="85" stroke="#C4A47C" stroke-width="3"/>' +
-    '<line x1="85" y1="145" x2="85" y2="155" stroke="#6B6B3A" stroke-width="3"/>' +
-    "</svg>" +
-    '<img src="' + PHOTO_1 + '" alt="Katarina Peters">' +
-    "</div>" +
-    '<p class="caption">' + esc(text(s, "Caption under photo")) + "</p>" +
-    '<h1 class="title">' + esc(text(s, "Title")) + "</h1>" +
+    '<section class="pc">' +
+    cardTop(text(s, "Caption under photo")) +
+    '<div class="who"><img class="ring" src="' + PHOTO_1 + '" alt="Katarina Peters">' +
+    '<h1 class="display">' + esc(text(s, "Title")) + "</h1></div>" +
     '<p class="based-on">' + esc(text(s, "Based on line (italic)")) + "</p>" +
-    '<button type="button" class="btn" data-action="enter">' + esc(text(s, "Button")) + "</button>" +
+    entryButton(text(s, "Button"), 'type="button" data-action="enter"') +
+    "</section>" +
     footer() + "</main>"
   );
 }
@@ -359,42 +362,44 @@ function renderRoom() {
   const sel = state.selections[room];
   let html =
     '<main class="page room">' + langSwitch() + map("room") +
-    '<header class="band"><div class="band-label">' + esc(fill(fixed("Header band label"), state.pos)) + "</div>" +
-    '<h1 class="band-title">' + esc(roomText(room, "Room name")) + "</h1></header>" +
+    '<section class="pc">' +
+    cardTop(fill(fixed("Header band label"), state.pos)) +
+    '<h1 class="h">' + esc(roomText(room, "Room name")) + "</h1>" +
     '<p class="intro">' + esc(roomText(room, "Intro")) + "</p>" +
     '<p class="key">' + esc(roomText(room, "Key line")) + "</p>";
   if (hasRoomText(room, "Small note")) {
-    html += '<p class="note muted">' + esc(roomText(room, "Small note")) + "</p>";
+    html += '<p class="note">' + esc(roomText(room, "Small note")) + "</p>";
   }
   html +=
     '<h2 class="question" id="q">' + esc(fixed("Question")) + "</h2>" +
-    '<p class="question-sub muted">' + esc(fixed("Under the question")) + "</p>" +
-    '<div class="cards" role="group" aria-labelledby="q">';
+    '<p class="lbl question-sub">' + esc(fixed("Under the question")) + "</p>" +
+    '<div class="opts" role="group" aria-labelledby="q">';
   for (let n = 1; n <= 4; n++) {
     html +=
-      '<button type="button" class="card" data-card="' + n + '" aria-pressed="' + sel.includes(n) + '">' +
-      esc(roomText(room, cardElement(n))) + "</button>";
+      '<button type="button" class="opt" data-card="' + n + '" aria-pressed="' + sel.includes(n) + '">' +
+      esc(roomText(room, cardElement(n))) + '<i class="tick" aria-hidden="true"></i></button>';
   }
   html += "</div>";
   html += '<p class="error" role="alert" id="room-error"' + (state.showError ? "" : " hidden") + ">" +
     esc(fixed("Error message")) + "</p>";
   html +=
     '<div class="room-nav">' +
-    '<button type="button" class="btn-text" data-action="back">' + esc(fixed("Back button")) + "</button>" +
-    '<button type="button" class="btn" data-action="next">' + esc(fixed("Next button")) + "</button>" +
+    '<button type="button" class="link-muted" data-action="back">' + esc(fixed("Back button")) + "</button>" +
+    entryButton(fixed("Next button"), 'type="button" data-action="next"') +
     "</div>";
   if (hasRoomText(room, "Privacy line")) {
-    html += '<p class="privacy-line muted">' + withPrivacyLink(roomText(room, "Privacy line")) + "</p>";
+    html += '<p class="privacy-line">' + withPrivacyLink(roomText(room, "Privacy line")) + "</p>";
   }
-  html += footer() + "</main>";
+  html += "</section>" + footer() + "</main>";
   if (state.insightOpen) html += renderInsight(room);
   return html;
 }
 
+/** An insight block: tone "j" = jasper bar, "g" = feldgrau bar. */
 function insightBlock(room, labelEl, textEl, tone) {
   return (
-    '<div class="block ' + tone + '">' +
-    '<div class="lab">' + esc(roomText(room, labelEl)) + "</div>" +
+    '<div class="sc ' + tone + '">' +
+    '<span class="lbl">' + esc(roomText(room, labelEl)) + "</span>" +
     "<p>" + emphasize(roomText(room, textEl), boldWords(room, textEl)) + "</p></div>"
   );
 }
@@ -420,30 +425,30 @@ function insightButtonText() {
 function renderInsight(room) {
   let body = "";
   if (room === 3) {
-    body += insightBlock(room, "Insight: label", "Insight: text", "olive");
-  } else if (room === 7) {
-    body += insightBlock(room, "Insight: label 1", "Insight: text 1", "olive");
-    body += insightBlock(room, "Insight: label 2", "Insight: text 2", "olive");
+    body += insightBlock(room, "Insight: label", "Insight: text", "j");
   } else {
-    body += insightBlock(room, "Insight: label 1", "Insight: text 1", "olive");
-    body += insightBlock(room, "Insight: label 2", "Insight: text 2", "tan");
+    // Rooms 1, 2, 4, 5, 6: the two sides; Room 7: STEP 1 and STEP 2.
+    body += insightBlock(room, "Insight: label 1", "Insight: text 1", "j");
+    body += insightBlock(room, "Insight: label 2", "Insight: text 2", "g");
     if (hasRoomText(room, "Insight: bridge")) {
       body += '<p class="bridge">' + esc(roomText(room, "Insight: bridge")) + "</p>";
     }
   }
   body += '<p class="key">' + esc(roomText(room, "Insight: key line")) + "</p>";
-  body += '<button type="button" class="btn" data-action="continue">' + esc(insightButtonText()) + "</button>";
+  body += '<div class="insight-next">' + entryButton(insightButtonText(), 'type="button" data-action="continue"');
   // Countdown by position: the content file's countdown for positions 1
   // to 6 ("6 rooms to go" ... "Last room"), nothing after the 7th.
   if (state.pos <= 6) {
-    body += '<p class="countdown muted">' + esc(roomText(state.pos, "Countdown")) + "</p>";
+    body += '<p class="lbl countdown">' + esc(roomText(state.pos, "Countdown")) + "</p>";
   }
+  body += "</div>";
   return (
     '<div class="overlay" data-overlay>' +
-    '<section class="insight" role="dialog" aria-modal="true" aria-labelledby="insight-title">' +
-    '<div class="insight-head"><img src="' + PHOTO_1 + '" alt="">' +
+    '<section class="pc insight" role="dialog" aria-modal="true" aria-labelledby="insight-title" tabindex="-1">' +
+    cardTop(roomText(room, "Room name")) +
+    '<div class="head"><img src="' + PHOTO_1 + '" alt="">' +
     '<h2 id="insight-title">' + esc(fixed("Insight card header")) + "</h2></div>" +
-    '<div class="insight-body">' + body + "</div></section></div>"
+    body + "</section></div>"
   );
 }
 
@@ -462,15 +467,16 @@ function renderResult() {
 
   let html =
     '<main class="page result">' + langSwitch() +
-    '<header class="band"><div class="band-label">' + esc(text(s, "Header label")) + "</div>" +
-    '<h1 class="band-title">' + esc(text(s, "Header title")) + "</h1></header>" +
+    '<section class="pc">' +
+    cardTop(text(s, "Header label")) +
+    '<h1 class="h">' + esc(text(s, "Header title")) + "</h1>" +
     map("result") +
     '<div class="legend"><span><i class="passed"></i>' + esc(text(s, "Map legend 1")) + "</span>" +
     '<span><i class="stuck"></i>' + esc(text(s, "Map legend 2")) + "</span></div>";
 
-  html += '<div class="block olive"><div class="lab">' + esc(text(s, "Strengths label")) + "</div>";
+  html += '<div class="sc g"><span class="lbl">' + esc(text(s, "Strengths label")) + "</span>";
   if (strong.length) {
-    strong.forEach((t) => (html += "<p>" + esc(t) + "</p>"));
+    strong.forEach((t) => (html += '<p class="ln">' + esc(t) + "</p>"));
   } else {
     html += "<p>" + esc(text(s, "If no positive cards")) + "</p>";
   }
@@ -483,19 +489,20 @@ function renderResult() {
     // the count line and summary sentence, without naming the others.
     const label = summary ? text(s, "Stuck label (main, 2 or more stuck rooms)") : text(s, "Stuck label");
     html +=
-      '<div class="block tan"><div class="lab">' + esc(label) + "</div>" +
+      '<div class="sc j"><span class="lbl">' + esc(label) + "</span>" +
       '<p class="stuck-room">' + esc(line.name) + "</p>" +
       '<p class="stuck-text">' + esc(line.sentence) + "</p>" +
       (summary ? '<p class="stuck-summary">' + esc(summary) + "</p>" : "") +
       "</div>";
   } else {
-    html += '<div class="block tan"><p>' + esc(text(s, "Only positive cards")) + "</p></div>";
+    html += '<div class="sc j"><p>' + esc(text(s, "Only positive cards")) + "</p></div>";
   }
+  html += "</section>";
 
   html +=
-    '<form class="cta" novalidate data-form>' +
+    '<form class="pc cta" novalidate data-form>' +
     "<h2>" + esc(text(s, "CTA heading")) + "</h2>" +
-    "<p>" + esc(text(s, "CTA text")) + "</p>" +
+    '<p class="cta-text">' + esc(text(s, "CTA text")) + "</p>" +
     '<textarea class="field" name="freeText" maxlength="2000" aria-label="' + esc(text(s, "Optional field")) +
     '" placeholder="' + esc(text(s, "Optional field")) + '">' + esc(f.freeText) + "</textarea>" +
     '<input class="field" name="company" type="text" autocomplete="organization" maxlength="200" aria-label="' +
@@ -510,7 +517,7 @@ function renderResult() {
     (err.consent ? ' aria-invalid="true" aria-describedby="err-consent"' : "") + ">" +
     "<span>" + withPrivacyLink(text(s, "Consent")) + "</span></label>" +
     (err.consent ? '<p class="error field-error" id="err-consent">' + esc(text(s, "Error 2")) + "</p>" : "") +
-    '<button type="submit" class="btn"' + (state.submitting ? " disabled" : "") + ">" + esc(text(s, "Button")) + "</button>" +
+    entryButton(text(s, "Button"), 'type="submit"' + (state.submitting ? " disabled" : "")) +
     "</form>";
 
   html += footer() + "</main>";
@@ -521,23 +528,20 @@ function renderThanks() {
   const s = "slide_10_thank_you";
   return (
     '<main class="page thanks">' + langSwitch() +
-    '<div class="ring-photo thanks">' +
-    '<svg width="210" height="210" viewBox="0 0 176 176" aria-hidden="true">' +
-    '<circle cx="88" cy="88" r="84" fill="none" stroke="#6B6B3A" stroke-width="3" stroke-dasharray="460 68" transform="rotate(100 88 88)"/>' +
-    '<circle cx="88" cy="88" r="75" fill="none" stroke="#C4A47C" stroke-width="3" stroke-dasharray="390 82" transform="rotate(250 88 88)"/>' +
-    "</svg>" +
-    '<img src="' + PHOTO_2 + '" alt="Katarina Peters">' +
-    "</div>" +
+    '<section class="pc">' +
+    '<img class="ring thanks-photo" src="' + PHOTO_2 + '" alt="Katarina Peters">' +
     '<p class="caption">' + esc(text(s, "Caption under photo")) + "</p>" +
-    '<p class="lab olive-text thanks-label">' + esc(text(s, "Small label")) + "</p>" +
-    '<h1 class="thanks-title">' + esc(text(s, "Title")) + "</h1>" +
+    '<p class="lbl thanks-label">' + esc(text(s, "Small label")) + "</p>" +
+    '<h1 class="display thanks-title">' + esc(text(s, "Title")) + "</h1>" +
     '<div class="confirm" role="status">' +
-    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B6B3A" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>' +
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#536969" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>' +
     "<span>" + esc(text(s, "Confirmation")) + "</span></div>" +
-    '<div class="booking"><h2>' + esc(text(s, "Booking question")) + "</h2>" +
+    '<div class="sc j booking"><h2>' + esc(text(s, "Booking question")) + "</h2>" +
     "<p>" + esc(text(s, "Booking text")) + "</p>" +
-    '<a class="btn" href="' + BOOKING_URL + '" target="_blank" rel="noopener">' + esc(text(s, "Button")) + "</a></div>" +
-    '<a class="website" href="' + WEBSITE_URL + '" target="_blank" rel="noopener">' + esc(text(s, "Website")) + "</a>" +
+    '<a class="entry" href="' + BOOKING_URL + '" target="_blank" rel="noopener"><span>' + esc(text(s, "Button")) +
+    '</span><i aria-hidden="true">→</i></a></div>' +
+    '<a class="site" href="' + WEBSITE_URL + '" target="_blank" rel="noopener">' + esc(text(s, "Website")) + "</a>" +
+    "</section>" +
     footer() + "</main>"
   );
 }
@@ -560,8 +564,8 @@ function render(opts = {}) {
     const b = app.querySelector('[data-lang="' + opts.focusLang + '"]');
     if (b) b.focus();
   } else if (state.insightOpen) {
-    const b = app.querySelector('[data-action="continue"]');
-    if (b) b.focus();
+    const b = app.querySelector(".insight");
+    if (b) b.focus({ preventScroll: true });
   } else if (opts.focusSelector) {
     const el = app.querySelector(opts.focusSelector);
     if (el) el.focus();
@@ -648,11 +652,11 @@ function openPrivacy() {
   el.id = "privacy";
   el.setAttribute("data-privacy-overlay", "");
   el.innerHTML =
-    '<section class="privacy-panel" role="dialog" aria-modal="true" aria-labelledby="privacy-title" tabindex="-1" lang="' +
+    '<section class="pc privacy-panel" role="dialog" aria-modal="true" aria-labelledby="privacy-title" tabindex="-1" lang="' +
     (state.lang === "zh" ? "zh-CN" : state.lang) + '">' +
-    '<button type="button" class="btn-text privacy-back" data-close-privacy>← ' + back + "</button>" +
+    '<button type="button" class="link-back" data-close-privacy><i aria-hidden="true">←</i> ' + back + "</button>" +
     '<div class="privacy-body">' + PRIVACY_HTML[state.lang].replace("<h1>", '<h1 id="privacy-title">') + "</div>" +
-    '<button type="button" class="btn" data-close-privacy>' + back + "</button>" +
+    '<button type="button" class="entry privacy-close" data-close-privacy><span>' + back + '</span></button>' +
     "</section>";
   document.body.appendChild(el);
   document.body.style.overflow = "hidden";

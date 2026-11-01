@@ -1,24 +1,35 @@
 /*
   styles.css
-  Colours from the Trust Labyrinth spec (section 8), layout and component
-  sizes from the approved mockups (trust-labyrinth-mockups.html). Same
-  system font stack and component family as the checkups (buttons,
-  cards, inputs, consent checkbox, italic footer). Mobile first: the base
-  rules target a phone, the min-width query at the bottom widens the
-  column for desktop.
+  Design from the Trust Labyrinth tutorial teaser (teaser/tutorial/
+  tutorial.html), which follows the "Preparation cards" on
+  peters-crosscultural.de: light background, white cards with a feldgrau
+  top line, Italiana and Cormorant, small spaced capitals for labels,
+  text links with an arrow, jasper as the second accent.
+  Fonts are self-hosted (fonts/), so the page makes no font requests to
+  other servers. Chinese uses the system sans, since the two web fonts
+  have no Chinese characters.
+  Mobile first: the min-width query at the bottom adapts the column for
+  desktop.
 */
 
+@font-face { font-family: Italiana; src: url("fonts/italiana.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: Cormorant; src: url("fonts/cormorant.woff2") format("woff2"); font-weight: 300 700; font-display: swap; }
+@font-face { font-family: Cormorant; src: url("fonts/cormorant-italic.woff2") format("woff2"); font-style: italic; font-weight: 300 700; font-display: swap; }
+
 :root {
-  --linen: #F3EEE4;
-  --espresso: #3B2A20;
-  --olive: #6B6B3A;
-  --tan: #C4A47C;
-  --olive-tint: #ECEBD9;
-  --tan-tint: #EFE3D0;
-  --muted: #8A7A66;
-  --brown: #8A5F2E;
-  --card: #FAF7F1;
-  --soft-ink: #5A4636;
+  --ink: #111;
+  --muted: #6b6b6b;
+  --feldgrau: #536969;
+  --jasper: #C16952;
+  --light: #F2F2F0;
+  --line: #DADADA;
+  --chip: #E6EEE8;
+  --white: #fff;
+  --display: "Italiana", "Cormorant", Georgia, serif;
+  --text: "Cormorant", Georgia, serif;
+  --label: "Segoe UI", -apple-system, system-ui, Helvetica, Arial, sans-serif;
+  --zh: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, "Segoe UI", sans-serif;
+  --shadow: 0 10px 30px rgba(0, 0, 0, .07);
 }
 
 * { box-sizing: border-box; }
@@ -26,67 +37,26 @@
 html, body { margin: 0; }
 
 body {
-  background: var(--linen);
-  color: var(--espresso);
-  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  background: var(--light);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 18px;
   -webkit-font-smoothing: antialiased;
 }
 
 .page {
-  max-width: 460px;
+  max-width: 520px;
   min-height: 100dvh;
   margin: 0 auto;
-  padding: 18px 20px 14px;
+  padding: 16px 16px 14px;
   display: flex;
   flex-direction: column;
-}
-
-/* ---------------------------------------------------------------- */
-/* Language switch + footer (every page)                            */
-/* ---------------------------------------------------------------- */
-
-.lang-switch {
-  display: flex;
-  justify-content: flex-end;
-  gap: 4px;
-  font-size: 13px;
-}
-
-.lang-switch button {
-  border: 0;
-  background: none;
-  font: inherit;
-  color: var(--muted);
-  padding: 4px 5px;
-  cursor: pointer;
-  border-radius: 6px;
-}
-
-.lang-switch button[aria-current="true"] {
-  color: var(--espresso);
-  font-weight: 500;
-}
-
-.lang-switch button:hover { color: var(--espresso); }
-
-.footer {
-  margin-top: auto;
-  padding-top: 22px;
-  font-size: 12px;
-  font-style: italic;
-  text-align: center;
-}
-
-.footer a {
-  color: var(--muted);
-  font-style: normal;
-  margin-left: 6px;
 }
 
 a { color: inherit; }
 
 :focus-visible {
-  outline: 2px solid var(--olive);
+  outline: 2px solid var(--feldgrau);
   outline-offset: 2px;
 }
 
@@ -95,121 +65,196 @@ a { color: inherit; }
 [tabindex="-1"]:focus { outline: none; }
 
 /* ---------------------------------------------------------------- */
-/* Buttons                                                          */
+/* Shared pieces                                                     */
 /* ---------------------------------------------------------------- */
 
-.btn {
-  display: block;
-  width: 100%;
-  border: 0;
-  background: var(--olive);
-  color: var(--linen);
-  border-radius: 10px;
-  padding: 13px 14px;
-  font: inherit;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.35;
-  letter-spacing: .08em;
+.lbl {
+  font-family: var(--label);
+  font-size: 10px;
+  letter-spacing: .18em;
   text-transform: uppercase;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
+  color: var(--feldgrau);
+  font-weight: 400;
 }
 
-.btn:hover { background: #5C5C30; }
-.btn[disabled] { opacity: .6; cursor: default; }
+.lang-switch {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2px;
+  margin-bottom: 10px;
+}
 
-/* Spec: Chinese has no capitals, buttons and labels stand out by
-   weight and colour only. */
-:lang(zh) .btn,
-:lang(zh) .band-label,
-:lang(zh) .lab { letter-spacing: .02em; }
-
-.btn-text {
+.lang-switch button {
   border: 0;
   background: none;
-  font: inherit;
-  font-size: 14px;
+  font-family: var(--label);
+  font-size: 11px;
+  letter-spacing: .14em;
   color: var(--muted);
-  padding: 8px 4px;
+  padding: 6px 6px;
   cursor: pointer;
 }
 
-.btn-text:hover { color: var(--espresso); }
+.lang-switch button[aria-current="true"] { color: var(--ink); }
+.lang-switch button:hover { color: var(--ink); }
 
-/* ---------------------------------------------------------------- */
-/* Photo circles with broken rings (opening + thank you)            */
-/* ---------------------------------------------------------------- */
-
-.ring-photo {
+/* The white card with the feldgrau top line. */
+.pc {
   position: relative;
-  margin: 18px auto 6px;
+  background: var(--white);
+  border-top: 3px solid var(--feldgrau);
+  box-shadow: var(--shadow);
+  padding: 22px 22px 24px;
 }
 
-.ring-photo svg { position: absolute; inset: 0; }
+.pc + .pc { margin-top: 16px; }
 
-.ring-photo img {
-  position: absolute;
-  border-radius: 50%;
-  border: 3px solid var(--card);
-  object-fit: cover;
+.pc-top {
+  font-family: var(--label);
+  font-size: 9.5px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
 }
 
-.ring-photo.opening { width: 200px; height: 200px; }
-.ring-photo.opening img { left: 43px; top: 43px; width: 114px; height: 114px; }
+.h {
+  font-family: var(--text);
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.2;
+  margin: 0 0 12px;
+}
 
-.ring-photo.thanks { width: 210px; height: 210px; margin-top: 14px; }
-.ring-photo.thanks img { left: 26px; top: 26px; width: 158px; height: 158px; }
+.display {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: .04em;
+  margin: 0;
+}
 
-.caption {
-  font-size: 13px;
+/* Text link button: words in small spaced capitals, a thin underline
+   and a jasper arrow, as on the website. */
+.entry {
+  display: inline-flex;
+  gap: 10px;
+  align-items: baseline;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  border-radius: 0;
+  background: none;
+  color: var(--ink);
+  font-family: var(--label);
+  font-size: 11.5px;
+  letter-spacing: .18em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  text-align: left;
+  text-decoration: none;
+  padding: 2px 0 6px;
+  cursor: pointer;
+}
+
+.entry i { font-style: normal; color: var(--jasper); }
+.entry:hover, .entry:active { color: var(--jasper); border-bottom-color: var(--jasper); }
+.entry[disabled] { color: var(--jasper); border-bottom-color: var(--jasper); cursor: default; }
+
+.link-muted, .link-back {
+  border: 0;
+  background: none;
+  font-family: var(--label);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.link-muted:hover, .link-back:hover { color: var(--ink); }
+.link-back { color: var(--feldgrau); }
+.link-back i { font-style: normal; margin-right: 4px; }
+
+.footer {
+  margin-top: auto;
+  padding-top: 26px;
+  font-size: 14px;
   font-style: italic;
   text-align: center;
+  color: var(--ink);
+}
+
+.footer a {
+  font-family: var(--label);
+  font-style: normal;
+  font-size: 9.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-left: 10px;
+}
+
+.error {
+  color: var(--jasper);
+  font-family: var(--label);
+  font-size: 12.5px;
+  line-height: 1.45;
+  margin: 10px 0 0;
+}
+
+/* Photo in a thin feldgrau ring (opening, insight head, thank you). */
+img.ring {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 1.5px var(--feldgrau);
 }
 
 /* ---------------------------------------------------------------- */
-/* Opening slide                                                    */
+/* Opening                                                           */
 /* ---------------------------------------------------------------- */
 
-.title {
-  font-size: 26px;
-  font-weight: 500;
-  text-align: center;
-  margin: 18px 0 0;
-  line-height: 1.25;
+.opening .pc { margin-top: 8vh; }
+
+.who {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 4px 0 16px;
 }
+
+.who img { width: 66px; height: 66px; flex: 0 0 66px; }
+
+.opening .display { font-size: 36px; line-height: 1.1; }
 
 .based-on {
-  border-top: 1px solid var(--tan);
-  border-bottom: 1px solid var(--tan);
-  margin: 18px 8px;
-  padding: 12px 2px;
-  font-size: 13px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0 14px;
+  margin: 0 0 20px;
   font-style: italic;
-  line-height: 1.5;
-  text-align: center;
-  color: var(--soft-ink);
+  font-size: 19px;
+  line-height: 1.38;
 }
 
-.opening .btn { margin: 8px 0 0; }
-
 /* ---------------------------------------------------------------- */
-/* Labyrinth map                                                    */
+/* Labyrinth map                                                     */
 /* ---------------------------------------------------------------- */
 
 .map {
   display: block;
   width: 100%;
-  max-width: 330px;
+  max-width: 340px;
   height: auto;
-  margin: 6px 0 0;
+  margin: 0 0 12px;
 }
 
-.map text {
-  font-family: inherit;
+.map .map-exit {
+  font-family: var(--label);
   font-size: 9px;
-  fill: var(--olive);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  fill: var(--muted);
 }
 
 .map .draw {
@@ -226,10 +271,13 @@ a { color: inherit; }
 
 .legend {
   display: flex;
-  gap: 14px;
-  font-size: 12px;
+  gap: 16px;
+  font-family: var(--label);
+  font-size: 9.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
   color: var(--muted);
-  margin: 4px 0 14px;
+  margin: 0 0 14px;
 }
 
 .legend span { display: inline-flex; align-items: center; }
@@ -239,133 +287,160 @@ a { color: inherit; }
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  margin-right: 5px;
+  margin-right: 6px;
 }
 
-.legend .passed { background: var(--olive); }
-.legend .stuck { border: 2px solid var(--brown); }
+.legend .passed { background: var(--feldgrau); }
+.legend .stuck { border: 2px solid var(--jasper); width: 10px; height: 10px; }
 
 /* ---------------------------------------------------------------- */
-/* Dark header band                                                 */
-/* ---------------------------------------------------------------- */
-
-.band {
-  background: var(--espresso);
-  color: var(--linen);
-  border-radius: 12px;
-  padding: 12px 14px;
-  margin-top: 8px;
-}
-
-.band-label {
-  font-size: 12px;
-  letter-spacing: .08em;
-  color: var(--tan);
-  text-transform: uppercase;
-}
-
-.band-title {
-  font-size: 19px;
-  font-weight: 500;
-  margin: 2px 0 0;
-  line-height: 1.3;
-}
-
-/* ---------------------------------------------------------------- */
-/* Room page                                                        */
+/* Room                                                              */
 /* ---------------------------------------------------------------- */
 
 .intro {
-  font-size: 14px;
-  line-height: 1.55;
-  margin: 14px 0 0;
+  font-size: 18px;
+  line-height: 1.45;
+  margin: 0;
 }
 
 .key {
-  font-size: 15px;
-  line-height: 1.45;
-  font-weight: 500;
-  border-left: 3px solid var(--olive);
-  padding-left: 9px;
-  margin: 10px 0 0;
+  font-size: 18.5px;
+  line-height: 1.4;
+  font-weight: 600;
+  border-left: 3px solid var(--feldgrau);
+  padding-left: 11px;
+  margin: 12px 0 0;
 }
 
-.muted { color: var(--muted); }
-
-.note { font-size: 12px; margin: 6px 0 0; line-height: 1.4; }
+.note {
+  font-size: 15.5px;
+  line-height: 1.4;
+  color: var(--muted);
+  margin: 8px 0 0;
+}
 
 .question {
-  font-size: 15px;
-  font-weight: 500;
-  margin: 18px 0 0;
-  line-height: 1.4;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.3;
+  margin: 22px 0 2px;
 }
 
-.question-sub { font-size: 13px; margin: 3px 0 10px; }
+.question-sub { margin: 0 0 12px; }
 
-.cards { display: flex; flex-direction: column; gap: 10px; }
+.opts { display: grid; gap: 8px; }
 
-.card {
+.opt {
+  position: relative;
   display: block;
   width: 100%;
   text-align: left;
-  font: inherit;
-  font-size: 14px;
-  line-height: 1.4;
-  color: var(--espresso);
-  background: var(--card);
-  border: 1px solid var(--tan);
-  border-radius: 10px;
-  padding: 11px 12px;
-  margin: 0;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--line);
+  padding: 9px 38px 9px 12px;
+  font-family: var(--text);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--ink);
   cursor: pointer;
+  transition: background .2s ease, border-color .2s ease;
 }
 
-.card:hover { border-color: var(--olive); }
+.opt:hover { border-color: #c4c4c4; border-left-color: var(--feldgrau); }
 
-/* Spec: selected card has a 1.5px olive border on light olive tint.
-   The padding drops by .5px so the text does not shift on select. */
-.card[aria-pressed="true"] {
-  border: 1.5px solid var(--olive);
-  background: var(--olive-tint);
-  padding: 10.5px 11.5px;
+.opt[aria-pressed="true"] {
+  background: var(--chip);
+  border-left-color: var(--feldgrau);
 }
 
-.error {
-  color: var(--brown);
-  font-size: 13px;
-  margin: 10px 0 0;
-  line-height: 1.4;
+.opt .tick {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  width: 17px;
+  height: 17px;
+  margin-top: -8.5px;
+  border-radius: 50%;
+  background: var(--feldgrau);
+  opacity: 0;
+  transform: scale(.6);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.opt .tick::after {
+  content: "";
+  position: absolute;
+  left: 5.5px;
+  top: 3px;
+  width: 4px;
+  height: 7.5px;
+  border: solid var(--white);
+  border-width: 0 1.6px 1.6px 0;
+  transform: rotate(45deg);
+}
+
+.opt[aria-pressed="true"] .tick { opacity: 1; transform: scale(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .opt, .opt .tick { transition: none; }
 }
 
 .room-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 12px;
+  margin-top: 18px;
 }
 
-.room-nav .btn { width: auto; padding: 11px 22px; }
-
 .privacy-line {
-  font-size: 12px;
+  font-family: var(--label);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--muted);
   text-align: center;
-  margin: 14px 0 0;
-  line-height: 1.4;
+  margin: 18px 0 0;
 }
 
 /* ---------------------------------------------------------------- */
-/* Insight card overlay                                             */
+/* Insight blocks (also used on the result and thank you pages)      */
+/* ---------------------------------------------------------------- */
+
+.sc {
+  background: var(--white);
+  border: 1px solid #eee;
+  border-left: 3px solid var(--jasper);
+  padding: 11px 13px 12px;
+}
+
+.sc + .sc, .sc + .bridge { margin-top: 10px; }
+.sc.g { border-left-color: var(--feldgrau); }
+
+.sc .lbl { display: block; color: var(--jasper); margin-bottom: 4px; }
+.sc.g .lbl { color: var(--feldgrau); }
+
+.sc p {
+  font-size: 18px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.sc strong { font-weight: 700; }
+
+/* ---------------------------------------------------------------- */
+/* Insight card overlay                                              */
 /* ---------------------------------------------------------------- */
 
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(59, 42, 32, .42);
+  background: rgba(17, 17, 17, .35);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 12px;
+  padding: 16px;
   overflow-y: auto;
   z-index: 10;
   animation: fade-in .18s ease-out;
@@ -379,113 +454,185 @@ a { color: inherit; }
 
 .insight {
   width: 100%;
-  max-width: 420px;
+  max-width: 480px;
   max-height: 100%;
   overflow-y: auto;
-  background: var(--linen);
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(59, 42, 32, .25);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .18);
 }
 
-.insight-head {
-  background: var(--espresso);
-  color: var(--linen);
-  padding: 14px 16px;
+.head {
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-bottom: 16px;
 }
 
-.insight-head img {
-  width: 38px;
-  height: 38px;
+.head img {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
   border-radius: 50%;
   object-fit: cover;
-  flex: 0 0 38px;
 }
 
-.insight-head h2 { font-size: 16px; font-weight: 500; margin: 0; }
-
-.insight-body { padding: 20px 18px 22px; }
-
-.block {
-  border-radius: 10px;
-  padding: 12px 13px;
-}
-
-.block + .block { margin-top: 12px; }
-
-.block.olive { background: var(--olive-tint); }
-.block.tan { background: var(--tan-tint); }
-
-.lab {
-  font-size: 12px;
+.head h2 {
+  font-family: var(--text);
   font-weight: 500;
-  letter-spacing: .06em;
-  text-transform: uppercase;
+  font-size: 26px;
+  margin: 0;
 }
-
-.olive .lab, .lab.olive-text { color: var(--olive); }
-.tan .lab { color: var(--brown); }
-
-.block p {
-  font-size: 14px;
-  line-height: 1.5;
-  margin: 5px 0 0;
-}
-
-strong, b { font-weight: 500; }
-
-/* Chinese system fonts on Windows (Microsoft YaHei) have no medium
-   weight, so 500 falls back to regular and emphasis disappears. Use
-   semibold for every medium-weight element in Chinese. */
-:lang(zh) strong, :lang(zh) b, :lang(zh) .key, :lang(zh) .question,
-:lang(zh) .band-title, :lang(zh) .insight-head h2, :lang(zh) .lab,
-:lang(zh) .btn, :lang(zh) .title, :lang(zh) .stuck-room, :lang(zh) .cta h2,
-:lang(zh) .booking h2, :lang(zh) .thanks-title, :lang(zh) .confirm,
-:lang(zh) .lang-switch [aria-current="true"] { font-weight: 600; }
 
 .bridge {
-  font-size: 14px;
-  line-height: 1.55;
-  margin: 18px 0 0;
+  font-style: italic;
+  font-size: 18.5px;
+  line-height: 1.38;
+  margin: 12px 0 0;
 }
 
-.insight .key { margin-top: 16px; }
+.insight .key { margin-top: 14px; }
 
-.insight .btn { margin-top: 24px; }
+.insight-next { margin-top: 24px; }
 
-.countdown {
-  font-size: 12px;
-  text-align: center;
-  margin: 8px 0 0;
+.countdown { color: var(--muted); margin: 12px 0 0; }
+
+/* ---------------------------------------------------------------- */
+/* Result                                                            */
+/* ---------------------------------------------------------------- */
+
+.result .h { margin-bottom: 14px; }
+
+.result .sc .ln + .ln { margin-top: 4px; }
+
+.stuck-room { font-weight: 700; font-size: 19px !important; }
+
+.stuck-summary {
+  margin-top: 10px !important;
+  padding-top: 9px;
+  border-top: 1px solid var(--line);
 }
 
-/* ---------------------------------------------------------------- */
-/* Result page                                                      */
-/* ---------------------------------------------------------------- */
+.cta { padding: 28px 22px 26px; }
 
-.result .map { margin-top: 14px; }
-
-.result .block p { margin-top: 7px; }
-.result .block p + p { margin-top: 6px; }
-
-.stuck-room {
-  font-size: 15px;
+.cta h2 {
+  font-family: var(--text);
   font-weight: 500;
-  margin: 6px 0 0;
+  font-size: 30px;
+  line-height: 1.15;
+  margin: 0 0 12px;
 }
 
-.result .block .stuck-text { margin-top: 3px; }
-
-.result .block .stuck-summary {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(196, 164, 124, .55);
+.cta-text {
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.38;
+  margin: 0 0 18px;
 }
+
+.field {
+  display: block;
+  width: 100%;
+  margin-top: 9px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  padding: 11px 12px;
+  font-family: var(--text);
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.field::placeholder { color: #9a9a9a; }
+.field:focus { outline: none; border-color: var(--feldgrau); box-shadow: inset 0 0 0 1px var(--feldgrau); }
+.field[aria-invalid="true"] { border-color: var(--jasper); }
+
+textarea.field { min-height: 72px; resize: vertical; line-height: 1.4; }
+
+.field-error { margin: 5px 0 0; }
+
+.consent {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 14px;
+  font-size: 16px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.consent input {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  margin: 3px 0 0;
+  accent-color: var(--feldgrau);
+}
+
+.consent a, .privacy-line a { color: var(--feldgrau); }
+
+.cta .entry { margin-top: 22px; }
 
 /* ---------------------------------------------------------------- */
-/* Privacy notice overlay                                           */
+/* Thank you                                                         */
+/* ---------------------------------------------------------------- */
+
+.thanks .pc { text-align: center; padding-top: 30px; }
+
+.thanks-photo {
+  display: block;
+  width: 124px;
+  height: 124px;
+  margin: 0 auto 10px;
+}
+
+.caption { font-style: italic; font-size: 16px; margin: 0; }
+
+.thanks-label { color: var(--jasper); margin: 22px 0 6px; }
+
+.thanks-title { font-size: 42px; line-height: 1.1; }
+
+.confirm {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-align: left;
+  background: var(--chip);
+  padding: 12px 14px;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.confirm svg { flex: 0 0 22px; }
+
+.booking { text-align: left; margin-top: 12px; padding: 14px 15px 16px; }
+
+.booking h2 {
+  font-family: var(--text);
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0;
+}
+
+.booking p { margin: 4px 0 14px; }
+
+.site {
+  display: block;
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+  padding-top: 12px;
+  font-family: var(--label);
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--feldgrau);
+  text-decoration: none;
+}
+
+.site:hover { color: var(--jasper); }
+
+/* ---------------------------------------------------------------- */
+/* Privacy notice overlay                                            */
 /* ---------------------------------------------------------------- */
 
 .privacy-overlay {
@@ -495,156 +642,71 @@ strong, b { font-weight: 500; }
 
 .privacy-panel {
   width: 100%;
-  max-width: 560px;
+  max-width: 620px;
   margin: auto 0;
-  background: var(--card);
-  border: 1px solid var(--tan);
-  border-radius: 14px;
-  padding: 10px 20px 22px;
-  box-shadow: 0 10px 30px rgba(59, 42, 32, .25);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
-.privacy-back { padding-left: 0; color: var(--olive); }
+.privacy-body h1 {
+  font-family: var(--text);
+  font-weight: 500;
+  font-size: 28px;
+  margin: 8px 0 4px;
+}
 
-.privacy-body h1 { font-size: 21px; font-weight: 500; margin: 6px 0 4px; }
-.privacy-body h2 { font-size: 15.5px; font-weight: 500; margin: 22px 0 4px; color: var(--olive); }
-.privacy-body p, .privacy-body li { font-size: 14px; }
+.privacy-body h2 {
+  font-family: var(--label);
+  font-weight: 400;
+  font-size: 10.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--feldgrau);
+  margin: 24px 0 6px;
+}
+
+.privacy-body p, .privacy-body li { font-size: 17px; }
 .privacy-body p { margin: 6px 0; }
 .privacy-body ul { margin: 6px 0; padding-left: 20px; }
-.privacy-body a { color: var(--olive); }
+.privacy-body a { color: var(--feldgrau); }
 
-.privacy-panel .btn { margin-top: 24px; }
-
-:lang(zh) .privacy-body h1, :lang(zh) .privacy-body h2 { font-weight: 600; }
-
-.cta {
-  border-top: 1px solid var(--tan);
-  margin-top: 18px;
-  padding-top: 16px;
-}
-
-.cta h2 {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1.35;
-  margin: 0;
-}
-
-.cta > p {
-  font-size: 14px;
-  line-height: 1.5;
-  margin: 7px 0 0;
-}
-
-.field {
-  display: block;
-  width: 100%;
-  margin-top: 8px;
-  background: var(--card);
-  border: 1px solid var(--tan);
-  border-radius: 10px;
-  padding: 10px 12px;
-  font: inherit;
-  font-size: 14px;
-  color: var(--espresso);
-}
-
-.field::placeholder { color: #9A8B78; }
-.field:focus { outline: none; border-color: var(--olive); box-shadow: 0 0 0 1px var(--olive); }
-.field[aria-invalid="true"] { border-color: var(--brown); }
-
-textarea.field { min-height: 64px; resize: vertical; line-height: 1.45; }
-
-.field-error { margin: 5px 0 0; font-size: 12.5px; }
-
-.consent {
-  display: flex;
-  gap: 9px;
-  align-items: flex-start;
-  margin-top: 12px;
-  font-size: 13px;
-  line-height: 1.4;
-  color: var(--soft-ink);
-  cursor: pointer;
-}
-
-.consent input {
-  flex: 0 0 auto;
-  width: 16px;
-  height: 16px;
-  margin: 1px 0 0;
-  accent-color: var(--olive);
-}
-
-.cta .btn { margin-top: 14px; }
+.privacy-close { margin-top: 24px; }
 
 /* ---------------------------------------------------------------- */
-/* Thank you slide                                                  */
+/* Chinese: system sans instead of the two web fonts                 */
 /* ---------------------------------------------------------------- */
 
-.thanks-label {
-  text-align: center;
-  margin-top: 20px;
-  letter-spacing: .1em;
+:lang(zh) body, :lang(zh) .h, :lang(zh) .display, :lang(zh) .opt, :lang(zh) .field,
+:lang(zh) .head h2, :lang(zh) .cta h2, :lang(zh) .booking h2, :lang(zh) .privacy-body h1 {
+  font-family: var(--zh);
 }
 
-.thanks-title {
-  font-size: 28px;
-  font-weight: 500;
-  text-align: center;
-  margin: 4px 0 0;
-}
-
-.confirm {
-  background: var(--olive-tint);
-  border-radius: 12px;
-  padding: 13px 14px;
-  margin-top: 16px;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  font-size: 14px;
-  line-height: 1.4;
-  font-weight: 500;
-}
-
-.confirm svg { flex: 0 0 22px; }
-
-.booking {
-  background: var(--tan-tint);
-  border: 1px solid var(--tan);
-  border-radius: 12px;
-  padding: 15px 14px 14px;
-  margin-top: 12px;
-}
-
-.booking h2 { font-size: 15px; font-weight: 500; margin: 0; }
-
-.booking p {
-  font-size: 13px;
-  line-height: 1.45;
-  margin: 5px 0 0;
-  color: var(--soft-ink);
-}
-
-.booking .btn { margin-top: 12px; }
-
-.website {
-  display: block;
-  font-size: 13px;
-  text-align: center;
-  margin-top: 16px;
-  color: var(--olive);
-}
+:lang(zh) body { font-size: 16px; }
+:lang(zh) .intro, :lang(zh) .sc p, :lang(zh) .bridge, :lang(zh) .question, :lang(zh) .based-on,
+:lang(zh) .cta-text, :lang(zh) .privacy-body p, :lang(zh) .privacy-body li { font-size: 15.5px; line-height: 1.65; }
+:lang(zh) .key { font-size: 16px; line-height: 1.6; }
+:lang(zh) .opt { font-size: 15px; font-weight: 400; line-height: 1.55; }
+:lang(zh) .note, :lang(zh) .consent { font-size: 14px; }
+:lang(zh) .h, :lang(zh) .head h2 { font-size: 22px; font-weight: 600; }
+:lang(zh) .opening .display { font-size: 30px; font-weight: 600; letter-spacing: .08em; }
+:lang(zh) .thanks-title { font-size: 34px; font-weight: 600; }
+:lang(zh) .cta h2 { font-size: 24px; font-weight: 600; }
+:lang(zh) .stuck-room { font-size: 17px !important; }
+:lang(zh) .confirm, :lang(zh) .booking h2 { font-size: 16px; }
+/* Chinese has no italics: emphasis by colour and weight instead. */
+:lang(zh) .question, :lang(zh) .based-on, :lang(zh) .bridge, :lang(zh) .cta-text,
+:lang(zh) .caption, :lang(zh) .footer { font-style: normal; }
+:lang(zh) .question { font-weight: 600; }
+:lang(zh) .key, :lang(zh) .sc strong, :lang(zh) .stuck-room { font-weight: 600; }
+:lang(zh) .lbl, :lang(zh) .pc-top, :lang(zh) .entry, :lang(zh) .legend { letter-spacing: .08em; }
 
 /* ---------------------------------------------------------------- */
-/* Desktop                                                          */
+/* Desktop                                                           */
 /* ---------------------------------------------------------------- */
 
 @media (min-width: 720px) {
-  .page { padding-top: 32px; }
-  .map { max-width: 360px; }
+  .page { padding-top: 28px; }
+  .pc { padding: 28px 30px 30px; }
+  .map { max-width: 380px; }
 }
 
 .sr-only {
@@ -655,3 +717,6 @@ textarea.field { min-height: 64px; resize: vertical; line-height: 1.45; }
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+
+/* The footer name is Latin text: keep it in Cormorant italic in Chinese too. */
+:lang(zh) .footer { font-family: var(--text); font-style: italic; font-size: 15px; }
