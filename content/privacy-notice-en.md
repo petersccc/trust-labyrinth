@@ -36,14 +36,14 @@ No AI system processes your individual answers when you use this tool. Your resu
 ## Who else receives this data
 
 - Cloudflare, which hosts this website
-- ClickUp, where your email, answers and optional text are stored if you submit them
+- Brevo (Sendinblue GmbH, Berlin, Germany), which stores your email and company name and sends your answers and optional text to me by email, if you submit them
 - Calendly, if you choose to book a discovery call through the link provided
 
 Each of these acts as a data processor on our behalf, under its own data processing agreement.
 
 ## Whether data leaves the EU or EEA
 
-Yes. Cloudflare, ClickUp and Calendly are all US based and process data there. Each relies on the Standard Contractual Clauses, the transfer safeguard recognized under GDPR, and Cloudflare and Calendly are also certified under the EU-US Data Privacy Framework as an additional basis. These terms are already built into each provider's standard agreement, not negotiated separately.
+Yes. Cloudflare and Calendly are US based and process data there. Both rely on the Standard Contractual Clauses, the transfer safeguard recognized under GDPR, and both are also certified under the EU-US Data Privacy Framework as an additional basis. Brevo is based in Germany. These terms are already built into each provider's standard agreement, not negotiated separately.
 
 ## How long we keep your data
 

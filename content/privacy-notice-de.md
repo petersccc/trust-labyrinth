@@ -36,14 +36,14 @@ Kein KI-System verarbeitet Ihre individuellen Antworten, wenn Sie dieses Tool nu
 ## Empfänger der Daten
 
 - Cloudflare, Hosting dieser Website
-- ClickUp, wo Ihre E-Mail-Adresse, Ihre Antworten und Ihr optionaler Text gespeichert werden, wenn Sie diese übermitteln
+- Brevo (Sendinblue GmbH, Berlin), das Ihre E-Mail-Adresse und Ihren Firmennamen speichert und mir Ihre Antworten und Ihren optionalen Text per E-Mail zusendet, wenn Sie diese übermitteln
 - Calendly, falls Sie über den bereitgestellten Link ein Kennenlerngespräch buchen
 
 Jeder dieser Anbieter handelt als Auftragsverarbeiter in unserem Auftrag auf Grundlage eines eigenen Auftragsverarbeitungsvertrags.
 
 ## Übermittlung außerhalb der EU oder des EWR
 
-Ja. Cloudflare, ClickUp und Calendly haben ihren Sitz in den USA und verarbeiten Daten dort. Alle drei stützen sich auf die Standardvertragsklauseln, die nach der DSGVO anerkannte Garantie für Datenübermittlungen. Cloudflare und Calendly sind zusätzlich unter dem EU-US Data Privacy Framework zertifiziert. Diese Regelungen sind bereits Teil der Standardverträge der jeweiligen Anbieter und wurden nicht gesondert verhandelt.
+Ja. Cloudflare und Calendly haben ihren Sitz in den USA und verarbeiten Daten dort. Beide stützen sich auf die Standardvertragsklauseln, die nach der DSGVO anerkannte Garantie für Datenübermittlungen, und sind zusätzlich unter dem EU-US Data Privacy Framework zertifiziert. Brevo hat seinen Sitz in Deutschland. Diese Regelungen sind bereits Teil der Standardverträge der jeweiligen Anbieter und wurden nicht gesondert verhandelt.
 
 ## Speicherdauer
 
